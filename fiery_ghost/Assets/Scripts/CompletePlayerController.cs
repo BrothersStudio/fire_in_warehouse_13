@@ -27,6 +27,9 @@ public class CompletePlayerController : MonoBehaviour {
 
 	void Update()
 	{
+		Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		transform.rotation = Quaternion.LookRotation(Vector3.forward, mousePos - transform.position);
+
 		if (Input.GetMouseButton (0) && Time.time > nextFire) 
 		{
 			nextFire = Time.time + fireRate;
