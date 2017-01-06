@@ -46,11 +46,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\TutorialInfo\Scripts\TutorialInfo.cs" />
-     <Compile Include="Assets\_Completed-Assets\Scripts\CompleteCameraController.cs" />
-     <Compile Include="Assets\_Completed-Assets\Scripts\CompletePlayerController.cs" />
-     <Compile Include="Assets\_Completed-Assets\Scripts\FlickerEffect.cs" />
-     <None Include="Assets\TutorialInfo\Fonts\LICENSE.txt" />
+     <Compile Include="Assets\Scripts\CompleteCameraController.cs" />
+     <Compile Include="Assets\Scripts\CompletePlayerController.cs" />
+     <Compile Include="Assets\Scripts\FlickerEffect.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
