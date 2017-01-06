@@ -6,12 +6,15 @@ using UnityEngine.UI;
 
 public class CompletePlayerController : MonoBehaviour {
 
-	public float speed;				//Floating point variable to store the player's movement speed.
+	public float playerSpeed;
+	public float fireSlowdownFactor;
+	public float waterVariance;
 
 	public GameObject water;
 	public Transform waterSpawn;
 	public float fireRate;
 
+	private bool slowed = false;
 	private float nextFire;
 	private Rigidbody2D rb2d;		//Store a reference to the Rigidbody2D component required to use 2D Physics.
 
@@ -27,7 +30,20 @@ public class CompletePlayerController : MonoBehaviour {
 		if (Input.GetMouseButton (0) && Time.time > nextFire) 
 		{
 			nextFire = Time.time + fireRate;
-			Instantiate (water, waterSpawn.position, waterSpawn.rotation);
+
+			Vector3 offset = new Vector3 (Random.Range (-waterVariance, waterVariance), Random.Range (-waterVariance, waterVariance), 0.0f);
+
+			Instantiate (water, waterSpawn.position + offset, waterSpawn.rotation);
+
+			if (!slowed) {
+				slowed = true;
+				playerSpeed = playerSpeed / fireSlowdownFactor;
+			}
+		} 
+		else if (slowed == true && Time.time > nextFire) 
+		{
+			slowed = false;
+			playerSpeed = playerSpeed * fireSlowdownFactor;
 		}
 	}
 
@@ -44,7 +60,7 @@ public class CompletePlayerController : MonoBehaviour {
 		Vector2 movement = new Vector2 (moveHorizontal, moveVertical);
 
 		//Call the AddForce function of our Rigidbody2D rb2d supplying movement multiplied by speed to move our player.
-		rb2d.AddForce (movement * speed);
+		rb2d.AddForce (movement * playerSpeed);
 	}
 
 	//OnTriggerEnter2D is called whenever this object overlaps with a trigger collider.
