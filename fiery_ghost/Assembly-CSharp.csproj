@@ -49,6 +49,7 @@
      <Compile Include="Assets\Scripts\CompleteCameraController.cs" />
      <Compile Include="Assets\Scripts\CompletePlayerController.cs" />
      <Compile Include="Assets\Scripts\FlickerEffect.cs" />
+     <Compile Include="Assets\Scripts\MovingWater.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
