@@ -48,6 +48,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\CameraController.cs" />
      <Compile Include="Assets\Scripts\Fire.cs" />
+     <Compile Include="Assets\Scripts\FireSpawnerController.cs" />
      <Compile Include="Assets\Scripts\MonsterController.cs" />
      <Compile Include="Assets\Scripts\MonsterSpawnerController.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />

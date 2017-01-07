@@ -35,7 +35,10 @@ public class PlayerController : MonoBehaviour {
 		{
 			nextFire = Time.time + fireRate;
 
-			Vector3 offset = new Vector3 (Random.Range (-waterVariance, waterVariance), Random.Range (-waterVariance, waterVariance), 0.0f);
+			Vector3 offset = new Vector3 (
+				Random.Range (-waterVariance, waterVariance), 
+				Random.Range (-waterVariance, waterVariance), 
+				0.0f);
 
 			Instantiate (water, waterSpawn.position + offset, waterSpawn.rotation);
 
