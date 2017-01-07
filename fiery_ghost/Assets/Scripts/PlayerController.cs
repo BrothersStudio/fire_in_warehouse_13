@@ -40,7 +40,11 @@ public class PlayerController : MonoBehaviour {
 				Random.Range (-waterVariance, waterVariance), 
 				0.0f);
 
-			Instantiate (water, waterSpawn.position + offset, waterSpawn.rotation);
+			Quaternion randomSpin = waterSpawn.rotation;
+			Debug.Log (randomSpin);
+			randomSpin.z = randomSpin.z + Random.Range (0.0f, 1.0f);
+
+			Instantiate (water, waterSpawn.position + offset, randomSpin);
 
 			if (!slowed) {
 				slowed = true;

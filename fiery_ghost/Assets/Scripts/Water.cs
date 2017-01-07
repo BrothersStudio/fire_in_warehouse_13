@@ -7,6 +7,9 @@ public class Water : MonoBehaviour {
 	public float speed;
 	public float waterVariance;
 	public float waterLifetime;
+	public MeshRenderer VFX;
+
+	public Material[] waterMaterials;
 
 	private Rigidbody2D rb2d;
 	private float lifetime;
@@ -14,6 +17,8 @@ public class Water : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
+		VFX.material = waterMaterials[Random.Range(0, waterMaterials.Length)];
+
 		Vector3 playerPosition = GetComponentInParent<Transform> ().position;
 		Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
