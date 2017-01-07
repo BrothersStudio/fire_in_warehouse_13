@@ -40,17 +40,18 @@ public class Water : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other) 
 	{
-		float fireHitpoints = other.gameObject.GetComponentInChildren<Fire> ().hitpoints;
-
-		Debug.Log (fireHitpoints);
-
-		if (fireHitpoints <= 0) 
+		if (other.tag == "Fire") 
 		{
-			Destroy (other.gameObject);
-		} 
-		else 
-		{
-			other.gameObject.GetComponentInChildren<Fire>().hitpoints = fireHitpoints - 1.0f;
+			float fireHitpoints = other.gameObject.GetComponentInChildren<Fire> ().hitpoints;
+
+			if (fireHitpoints <= 0) 
+			{
+				Destroy (other.gameObject);
+			} 
+			else 
+			{
+				other.gameObject.GetComponentInChildren<Fire>().hitpoints = fireHitpoints - 1.0f;
+			}
 		}
 
 		Destroy (this.gameObject);
