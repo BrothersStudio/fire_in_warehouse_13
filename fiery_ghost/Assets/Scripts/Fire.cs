@@ -4,17 +4,21 @@ using UnityEngine;
 
 public class Fire : MonoBehaviour {
 
-	public float hitpoints;
+	public float maxHitpoints;
 	public float fireGrowthRate;
 
-	private Light redLight;
-	private Light yellowLight; 
+	public float hitpoints;
+	public Light redLight;
+	public Light yellowLight; 
+	public Transform sprite;
 
-	// Use this for initialization
+	private Vector3 startingSpriteSize;
+
 	void Start () 
 	{
-		redLight = GameObject.Find("Red Light").GetComponent<Light>();
-		yellowLight = GameObject.Find("Yellow Light").GetComponent<Light>();
+		hitpoints = maxHitpoints;
+
+		startingSpriteSize = sprite.localScale;
 	}
 	
 	// Update is called once per frame
@@ -25,5 +29,7 @@ public class Fire : MonoBehaviour {
 		// Red light is twice as wide as yellow
 		yellowLight.range = hitpoints / 10;
 		redLight.range = hitpoints * 2 / 10;
+
+		sprite.localScale = startingSpriteSize * (hitpoints / maxHitpoints);
 	}
 }
