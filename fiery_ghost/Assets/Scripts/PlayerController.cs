@@ -41,7 +41,6 @@ public class PlayerController : MonoBehaviour {
 				0.0f);
 
 			Quaternion randomSpin = waterSpawn.rotation;
-			Debug.Log (randomSpin);
 			randomSpin.z = randomSpin.z + Random.Range (0.0f, 1.0f);
 
 			Instantiate (water, waterSpawn.position + offset, randomSpin);
@@ -66,17 +65,6 @@ public class PlayerController : MonoBehaviour {
 		Vector2 movement = new Vector2 (moveHorizontal, moveVertical);
 
 		rb2d.AddForce (movement * playerSpeed);
-	}
-
-	//OnTriggerEnter2D is called whenever this object overlaps with a trigger collider.
-	void OnTriggerEnter2D(Collider2D other) 
-	{
-		//Check the provided Collider2D parameter other to see if it is tagged "PickUp", if it is...
-		if (other.gameObject.CompareTag ("PickUp")) 
-		{
-
-		}
-
 	}
 		
 }
