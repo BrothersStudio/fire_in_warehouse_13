@@ -3,9 +3,10 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\MonsterController.cs">
     <Files>
       <File FileName="Assets\Scripts\Fire.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\PlayerController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Water.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\MonsterController.cs" Line="29" Column="30" />
+      <File FileName="Assets\Scripts\PlayerController.cs" Line="40" Column="4" />
+      <File FileName="Assets\Scripts\Water.cs" Line="41" Column="1" />
+      <File FileName="Assets\Scripts\MonsterController.cs" Line="39" Column="30" />
+      <File FileName="Assets\Scripts\MonsterSpawnerController.cs" Line="20" Column="65" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
