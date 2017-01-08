@@ -14,6 +14,8 @@ public class MonsterSpawnerController : MonoBehaviour {
 	public float ySpawn;
 
 	private float cooldownTime;
+
+	[HideInInspector]
 	public bool monsterExists;
 
 	void Start () 
