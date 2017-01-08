@@ -16,19 +16,21 @@ public class PlayerController : MonoBehaviour {
 
 	private bool slowed = false;
 	private float nextFire;
-	private Rigidbody2D rb2d;		//Store a reference to the Rigidbody2D component required to use 2D Physics.
+	private Rigidbody2D rb2d;
+	private Camera cam;
 
-	// Use this for initialization
 	void Start()
 	{
-		//Get and store a reference to the Rigidbody2D component so that we can access it.
 		rb2d = GetComponent<Rigidbody2D> ();
+
+		// Performance consideration
+		cam = Camera.main;
 	}
 
 	void Update()
 	{
 		// Rotate player to face mouse pointer
-		Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		Vector3 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
 		transform.rotation = Quaternion.LookRotation(Vector3.forward, mousePos - transform.position);
 
 		if (Input.GetMouseButton (0) && Time.time > nextFire) 
