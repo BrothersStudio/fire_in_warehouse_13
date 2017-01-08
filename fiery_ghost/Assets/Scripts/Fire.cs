@@ -62,9 +62,9 @@ public class Fire : MonoBehaviour {
 			sprite.GetComponent<Transform> ().localScale = startingSpriteSize * (hitpoints / startingHitpoints);
 		}
 
-		if (Time.time > nextDamage) 
+		if (Time.timeSinceLevelLoad > nextDamage) 
 		{
-			nextDamage = Time.time + damageRate;
+			nextDamage = Time.timeSinceLevelLoad + damageRate;
 
 			healthbar.GetComponent<Image> ().fillAmount = healthbar.GetComponent<Image> ().fillAmount - damage * (hitpoints / startingHitpoints);
 		}

@@ -34,12 +34,12 @@ public class Water : MonoBehaviour {
 		rb2d = GetComponent<Rigidbody2D> ();
 		rb2d.AddForce (((fireDirection + offset) / normalizationValue) * speed);
 
-		lifetime = Time.time;
+		lifetime = Time.timeSinceLevelLoad;
 	}
 
 	void Update()
 	{
-		if (Time.time > lifetime + waterLifetime)
+		if (Time.timeSinceLevelLoad > lifetime + waterLifetime)
 			Object.Destroy (this.gameObject);
 	}
 
@@ -51,7 +51,7 @@ public class Water : MonoBehaviour {
 
 			if (fireHitpoints <= 0) 
 			{
-				other.gameObject.SetActive (false);
+				Destroy (other.gameObject);
 			} 
 			else 
 			{

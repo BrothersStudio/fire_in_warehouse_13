@@ -20,17 +20,17 @@ public class MonsterSpawnerController : MonoBehaviour {
 
 	void Start () 
 	{
-		cooldownTime = Time.time + monsterCooldown;
+		cooldownTime = Time.timeSinceLevelLoad + monsterCooldown;
 	}
 
 	void Update () 
 	{
-		if (!monsterExists && Time.time >= cooldownTime) 
+		if (!monsterExists && Time.timeSinceLevelLoad >= cooldownTime) 
 		{
 			Debug.Log("Spawned in monster");
 
 			monsterExists = true;
-			cooldownTime = Time.time + monsterCooldown;
+			cooldownTime = Time.timeSinceLevelLoad + monsterCooldown;
 
 
 			Vector3 playerLocation = player.GetComponent<Transform> ().position;

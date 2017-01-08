@@ -33,9 +33,9 @@ public class PlayerController : MonoBehaviour {
 		Vector3 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
 		transform.rotation = Quaternion.LookRotation(Vector3.forward, mousePos - transform.position);
 
-		if (Input.GetMouseButton (0) && Time.time > nextFire) 
+		if (Input.GetMouseButton (0) && Time.timeSinceLevelLoad > nextFire) 
 		{
-			nextFire = Time.time + fireRate;
+			nextFire = Time.timeSinceLevelLoad + fireRate;
 
 			Vector3 offset = new Vector3 (
 				Random.Range (-waterVariance, waterVariance), 
@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour {
 				playerSpeed = playerSpeed / fireSlowdownFactor;
 			}
 		} 
-		else if (slowed == true && Time.time > nextFire) 
+		else if (slowed == true && Time.timeSinceLevelLoad > nextFire) 
 		{
 			slowed = false;
 			playerSpeed = playerSpeed * fireSlowdownFactor;
