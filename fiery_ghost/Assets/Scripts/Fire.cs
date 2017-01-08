@@ -7,6 +7,7 @@ public class Fire : MonoBehaviour {
 
 	public GameObject healthbar;
 
+	public float startingHitpoints;
 	public float maxHitpoints;
 	public float fireGrowthRate;
 
@@ -17,7 +18,7 @@ public class Fire : MonoBehaviour {
 	public Light yellowLight; 
 	public GameObject sprite;
 	public Texture2D icon;
-	public float iconSize = 50f;
+	public float iconSize;
 
 	[HideInInspector]
 	public GUIStyle gooey;
@@ -32,7 +33,7 @@ public class Fire : MonoBehaviour {
 
 	void Start () 
 	{
-		hitpoints = maxHitpoints;
+		hitpoints = startingHitpoints;
 
 		startingSpriteSize = sprite.GetComponent<Transform>().localScale;
 		visible = sprite.GetComponent<SpriteRenderer> ().isVisible;
@@ -49,19 +50,22 @@ public class Fire : MonoBehaviour {
 
 	void Update () 
 	{
-		hitpoints += Time.deltaTime * fireGrowthRate;
+		if (hitpoints < maxHitpoints) 
+		{
+			hitpoints += Time.deltaTime * fireGrowthRate;
 
-		// Red light is twice as wide as yellow
-		yellowLight.range = hitpoints / 10;
-		redLight.range = hitpoints * 2 / 10;
+			// Red light is twice as wide as yellow
+			yellowLight.range = hitpoints / 10;
+			redLight.range = hitpoints * 2 / 10;
 
-		sprite.GetComponent<Transform>().localScale = startingSpriteSize * (hitpoints / maxHitpoints);
+			sprite.GetComponent<Transform> ().localScale = startingSpriteSize * (hitpoints / startingHitpoints);
+		}
 
 		if (Time.time > nextDamage) 
 		{
 			nextDamage = Time.time + damageRate;
 
-			healthbar.GetComponent<Image> ().fillAmount = healthbar.GetComponent<Image> ().fillAmount - damage * (hitpoints / maxHitpoints);
+			healthbar.GetComponent<Image> ().fillAmount = healthbar.GetComponent<Image> ().fillAmount - damage * (hitpoints / startingHitpoints);
 		}
 	}
 
