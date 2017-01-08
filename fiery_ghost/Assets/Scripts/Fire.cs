@@ -22,6 +22,7 @@ public class Fire : MonoBehaviour {
 
 	[HideInInspector]
 	public GUIStyle gooey;
+	[HideInInspector]
 	public float hitpoints;
 
 	private float nextDamage;
@@ -43,7 +44,7 @@ public class Fire : MonoBehaviour {
 
 		indRange.x = Screen.width - (Screen.width / 6);
 		indRange.y = Screen.height - (Screen.height / 7);
-		indRange /= 2f;
+		indRange /= 1.7f;
 
 		gooey.normal.textColor = new Vector4 (0, 0, 0, 0);
 	}
