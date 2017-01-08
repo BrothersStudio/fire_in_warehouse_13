@@ -47,5 +47,10 @@ public class Fire : MonoBehaviour {
 
 			healthbar.GetComponent<Image> ().fillAmount = healthbar.GetComponent<Image> ().fillAmount - damage * (hitpoints / maxHitpoints);
 		}
+
+		if (this.GetComponentInChildren<Renderer>().isVisible)
+		{
+			Debug.Log ("I see fire!");
+		}
 	}
 }
