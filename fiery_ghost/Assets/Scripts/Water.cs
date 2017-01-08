@@ -51,7 +51,7 @@ public class Water : MonoBehaviour {
 
 			if (fireHitpoints <= 0) 
 			{
-				other.gameObject.SetActive (false);
+				Destroy (other.gameObject);
 			} 
 			else 
 			{
