@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class FireSpawnerController : MonoBehaviour {
 
+	public GameObject healthbar;
+
 	public GameObject player;
 	public GameObject firePrefab;
 	public float minDistFromPlayer;
@@ -31,7 +33,8 @@ public class FireSpawnerController : MonoBehaviour {
 					               0.0f);
 			} while (Vector3.Distance (playerLocation, spawnLocation) < minDistFromPlayer);
 
-			Instantiate(firePrefab, spawnLocation, Quaternion.identity);
+			GameObject newFire = Instantiate(firePrefab, spawnLocation, Quaternion.identity);
+			newFire.GetComponent<Fire> ().healthbar = healthbar;
 		}
 
 	}

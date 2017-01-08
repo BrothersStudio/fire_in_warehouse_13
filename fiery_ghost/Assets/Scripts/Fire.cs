@@ -1,17 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Fire : MonoBehaviour {
 
+	public GameObject healthbar;
+
 	public float maxHitpoints;
 	public float fireGrowthRate;
+
+	public float damage;
+	public float damageRate;
 
 	public float hitpoints;
 	public Light redLight;
 	public Light yellowLight; 
 	public Transform sprite;
 
+	private float nextDamage;
 	private Vector3 startingSpriteSize;
 
 	void Start () 
@@ -19,6 +26,8 @@ public class Fire : MonoBehaviour {
 		hitpoints = maxHitpoints;
 
 		startingSpriteSize = sprite.localScale;
+
+		nextDamage = damageRate;
 	}
 	
 	// Update is called once per frame
@@ -31,5 +40,12 @@ public class Fire : MonoBehaviour {
 		redLight.range = hitpoints * 2 / 10;
 
 		sprite.localScale = startingSpriteSize * (hitpoints / maxHitpoints);
+
+		if (Time.time > nextDamage) 
+		{
+			nextDamage = Time.time + damageRate;
+
+			healthbar.GetComponent<Image> ().fillAmount = healthbar.GetComponent<Image> ().fillAmount - damage * (hitpoints / maxHitpoints);
+		}
 	}
 }
