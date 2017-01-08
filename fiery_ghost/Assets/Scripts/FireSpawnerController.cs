@@ -13,7 +13,12 @@ public class FireSpawnerController : MonoBehaviour {
 	public float xSpawn;
 	public float ySpawn;
 
-	private float cooldownTime = 0.0f;
+	private float cooldownTime;
+
+	void Start ()
+	{
+		cooldownTime = fireCooldown;
+	}
 
 	void Update () 
 	{
