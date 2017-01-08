@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 9ba174a804d41b547b9edf82778cbe70
+timeCreated: 1483917084
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Jupiter Crash BRK
+  fontNames:
+  - Jupiter Crash BRK
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
