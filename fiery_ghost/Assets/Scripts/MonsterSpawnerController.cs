@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MonsterSpawnerController : MonoBehaviour {
 
+	public GameObject healthbar;
+
 	public GameObject player;
 	public GameObject monsterPrefab;
 	public float minDistFromPlayer;
@@ -41,6 +43,7 @@ public class MonsterSpawnerController : MonoBehaviour {
 
 			GameObject newMonster = Instantiate(monsterPrefab, spawnLocation, player.GetComponent<Transform> ().rotation, this.transform);
 			newMonster.GetComponent<MonsterController> ().player = player;
+			newMonster.GetComponent<MonsterController> ().healthbar = healthbar;
 		}
 
 	}
