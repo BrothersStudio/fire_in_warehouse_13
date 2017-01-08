@@ -22,11 +22,11 @@ public class FireSpawnerController : MonoBehaviour {
 
 	void Update () 
 	{
-		if (Time.time >= cooldownTime) 
+		if (Time.timeSinceLevelLoad >= cooldownTime) 
 		{
 			Debug.Log("Spawned in fire");
 
-			cooldownTime = Time.time + fireCooldown;
+			cooldownTime = Time.timeSinceLevelLoad + fireCooldown;
 
 			Vector3 playerLocation = player.GetComponent<Transform> ().position;
 			Vector3 spawnLocation = new Vector3(0.0f,0.0f,0.0f); 
