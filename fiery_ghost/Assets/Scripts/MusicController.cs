@@ -6,27 +6,36 @@ using UnityEngine.Audio;
 
 public class MusicController : MonoBehaviour
 {
-    public AudioSource musicSource;
+    public AudioSource effectsSource;
     public AudioMixerSnapshot start;
     public AudioMixerSnapshot stringsIn;
+    public AudioClip spookyNoise;
 
 
 
     public Image hp_bars_0;
-    public float stringsAmount = 0.75f;
+    private float stringsAmount = 0.75f;
     private float fadeInTime = 1.0f;
+    private float spookyEffectAmount = 0.60f;
 
-	// Use this for initialization
-	void Start ()
+    private bool hasPlayed = false;
+    // Use this for initialization
+    void Start ()
     {
-		
-	}
+        effectsSource.clip = spookyNoise;
+    }
 	
 	void FixedUpdate ()
     {
         if (hp_bars_0.fillAmount < stringsAmount)
         {
             stringsIn.TransitionTo(fadeInTime);
+        }
+        
+        if (hp_bars_0.fillAmount < spookyEffectAmount && !hasPlayed)
+        {
+            effectsSource.PlayOneShot(spookyNoise);
+            hasPlayed = true;
         } 		
 	}
 
