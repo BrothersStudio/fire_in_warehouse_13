@@ -19,7 +19,6 @@ public class FireSpawnerController : MonoBehaviour {
 	void Start ()
 	{
 		cooldownTime = fireCooldown;
-		Debug.Log (6 / 4);
 	}
 
 	void Update () 
