@@ -65,8 +65,9 @@ public class PlayerController : MonoBehaviour {
 		float moveVertical = Input.GetAxis ("Vertical");
 
 		Vector2 movement = new Vector2 (moveHorizontal, moveVertical);
+		movement.Normalize ();
 
-		rb2d.AddForce (movement * playerSpeed);
+		rb2d.AddForce (movement);
 	}
 		
 }
