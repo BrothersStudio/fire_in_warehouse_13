@@ -18,6 +18,7 @@ public class Fire : MonoBehaviour {
 	public float playerDamage;
 	public float playerDamageRate;
 
+	public float flickerRate;
 	public Light redLight;
 	public Light yellowLight; 
 	public GameObject sprite;
@@ -29,6 +30,7 @@ public class Fire : MonoBehaviour {
 	[HideInInspector]
 	public float hitpoints;
 
+	private float nextFlicker;
 	private float nextHouseDamage;
 	private float nextPlayerDamage;
 
@@ -48,6 +50,7 @@ public class Fire : MonoBehaviour {
 
 		nextHouseDamage = houseDamageRate;
 		nextPlayerDamage = 0f;
+		nextFlicker = 0f;
 
 		indRange.x = Screen.width - (Screen.width / 6);
 		indRange.y = Screen.height - (Screen.height / 7);
@@ -74,6 +77,17 @@ public class Fire : MonoBehaviour {
 			nextHouseDamage = Time.timeSinceLevelLoad + houseDamageRate;
 
 			houseHealthbar.GetComponent<Image> ().fillAmount = houseHealthbar.GetComponent<Image> ().fillAmount - houseDamage * (hitpoints / nominalHitpoints);
+		}
+	}
+
+	void LateUpdate()
+	{
+		if (Time.timeSinceLevelLoad > nextFlicker) 
+		{
+			nextFlicker = Time.timeSinceLevelLoad + flickerRate;
+
+			yellowLight.range = yellowLight.range + Random.Range (-2, 2);
+			redLight.range = yellowLight.range + Random.Range (-4, 4);
 		}
 	}
 
@@ -118,7 +132,7 @@ public class Fire : MonoBehaviour {
 		{
 			nextPlayerDamage = Time.timeSinceLevelLoad + playerDamageRate;
 
-			playerHealthbar.GetComponent<Image> ().fillAmount = playerHealthbar.GetComponent<Image> ().fillAmount - playerDamage;
+			playerHealthbar.GetComponent<Image> ().fillAmount = playerHealthbar.GetComponent<Image> ().fillAmount - playerDamage * (hitpoints / nominalHitpoints);
 		}
 	}
 }
