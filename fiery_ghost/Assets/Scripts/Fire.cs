@@ -84,10 +84,12 @@ public class Fire : MonoBehaviour {
 	{
 		if (Time.timeSinceLevelLoad > nextFlicker) 
 		{
-			nextFlicker = Time.timeSinceLevelLoad + flickerRate;
+			nextFlicker = Time.timeSinceLevelLoad + Random.Range (0f, flickerRate);
 
-			yellowLight.range = yellowLight.range + Random.Range (-2, 2);
-			redLight.range = yellowLight.range + Random.Range (-4, 4);
+			yellowLight.range = yellowLight.range + Random.Range (-5, 5);
+
+			yellowLight.intensity = yellowLight.intensity + Random.Range (-0.1f, 0.1f);
+			redLight.intensity = redLight.intensity + Random.Range (-0.1f, 0.2f);
 		}
 	}
 
