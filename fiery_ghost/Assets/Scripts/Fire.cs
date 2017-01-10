@@ -5,9 +5,11 @@ using UnityEngine.UI;
 
 public class Fire : MonoBehaviour {
 
-	public GameObject healthbar;
+	public GameObject houseHealthbar;
+	public GameObject playerHealthbar;
 
 	public float startingHitpoints;
+	public float nominalHitpoints;
 	public float maxHitpoints;
 	public float fireGrowthRate;
 
@@ -66,7 +68,7 @@ public class Fire : MonoBehaviour {
 		{
 			nextDamage = Time.timeSinceLevelLoad + damageRate;
 
-			healthbar.GetComponent<Image> ().fillAmount = healthbar.GetComponent<Image> ().fillAmount - damage * (hitpoints / startingHitpoints);
+			houseHealthbar.GetComponent<Image> ().fillAmount = houseHealthbar.GetComponent<Image> ().fillAmount - damage * (hitpoints / startingHitpoints);
 		}
 	}
 
