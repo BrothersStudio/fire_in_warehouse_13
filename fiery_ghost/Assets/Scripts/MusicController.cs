@@ -15,7 +15,7 @@ public class MusicController : MonoBehaviour
 
     public Image hp_bars_0;
     private float stringsAmount = 0.75f;
-    private float fadeInTime = 1.0f;
+    private float fadeInTime = 0.3f;
     private float spookyEffectAmount = 0.60f;
 
     private bool hasPlayed = false;
