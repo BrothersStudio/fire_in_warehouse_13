@@ -13,8 +13,10 @@ public class Fire : MonoBehaviour {
 	public float maxHitpoints;
 	public float fireGrowthRate;
 
-	public float damage;
-	public float damageRate;
+	public float houseDamage;
+	public float houseDamageRate;
+	public float playerDamage;
+	public float playerDamageRate;
 
 	public Light redLight;
 	public Light yellowLight; 
@@ -27,7 +29,9 @@ public class Fire : MonoBehaviour {
 	[HideInInspector]
 	public float hitpoints;
 
-	private float nextDamage;
+	private float nextHouseDamage;
+	private float nextPlayerDamage;
+
 	private Vector3 startingSpriteSize;
 	private Camera cam;
 	private bool visible;
@@ -42,7 +46,8 @@ public class Fire : MonoBehaviour {
 		visible = sprite.GetComponent<SpriteRenderer> ().isVisible;
 		cam = Camera.main;
 
-		nextDamage = damageRate;
+		nextHouseDamage = houseDamageRate;
+		nextPlayerDamage = 0f;
 
 		indRange.x = Screen.width - (Screen.width / 6);
 		indRange.y = Screen.height - (Screen.height / 7);
@@ -61,14 +66,14 @@ public class Fire : MonoBehaviour {
 			yellowLight.range = hitpoints / 10;
 			redLight.range = hitpoints * 2 / 10;
 
-			sprite.GetComponent<Transform> ().localScale = startingSpriteSize * (hitpoints / startingHitpoints);
+			sprite.GetComponent<Transform> ().localScale = startingSpriteSize * (hitpoints / nominalHitpoints);
 		}
 
-		if (Time.timeSinceLevelLoad > nextDamage) 
+		if (Time.timeSinceLevelLoad > nextHouseDamage) 
 		{
-			nextDamage = Time.timeSinceLevelLoad + damageRate;
+			nextHouseDamage = Time.timeSinceLevelLoad + houseDamageRate;
 
-			houseHealthbar.GetComponent<Image> ().fillAmount = houseHealthbar.GetComponent<Image> ().fillAmount - damage * (hitpoints / startingHitpoints);
+			houseHealthbar.GetComponent<Image> ().fillAmount = houseHealthbar.GetComponent<Image> ().fillAmount - houseDamage * (hitpoints / nominalHitpoints);
 		}
 	}
 
@@ -105,5 +110,15 @@ public class Fire : MonoBehaviour {
 	void OnBecameVisible() 
 	{
 		visible = true;
+	}
+
+	void OnTriggerStay2D(Collider2D other) 
+	{
+		if (other.tag == "Player" && Time.timeSinceLevelLoad > nextPlayerDamage) 
+		{
+			nextPlayerDamage = Time.timeSinceLevelLoad + playerDamageRate;
+
+			playerHealthbar.GetComponent<Image> ().fillAmount = playerHealthbar.GetComponent<Image> ().fillAmount - playerDamage;
+		}
 	}
 }
