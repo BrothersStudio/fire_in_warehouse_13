@@ -14,6 +14,8 @@ public class Water : MonoBehaviour {
 	private Rigidbody2D rb2d;
 	private float lifetime;
 
+    public Camera SceneCamera;
+
 	// Use this for initialization
 	void Start () 
 	{
@@ -56,7 +58,8 @@ public class Water : MonoBehaviour {
 			else 
 			{
 				other.gameObject.GetComponentInChildren<Fire>().hitpoints = fireHitpoints - 1.0f;
-			}
+                SceneCamera.GetComponent<SoundEffectController>().PlayQuench();
+            }
 		}
 
 		Destroy (this.gameObject);
