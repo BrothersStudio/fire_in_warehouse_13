@@ -46,8 +46,7 @@ public class PlayerController : MonoBehaviour {
 			randomSpin.z = randomSpin.z + Random.Range (0.0f, 1.0f);
 
 			Instantiate (water, waterSpawn.position + offset, randomSpin);
-
-			if (!slowed) {
+            if (!slowed) {
 				slowed = true;
 				playerSpeed = playerSpeed / fireSlowdownFactor;
 			}

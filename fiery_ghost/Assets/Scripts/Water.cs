@@ -10,10 +10,12 @@ public class Water : MonoBehaviour {
 	public MeshRenderer VFX;
 
 	public Material[] waterMaterials;
+    public AudioClip[] quench;
+    public AudioSource quenchSource;
 
 	private Rigidbody2D rb2d;
 	private float lifetime;
-
+    
     // Use this for initialization
     void Start () 
 	{
@@ -45,7 +47,8 @@ public class Water : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other) 
 	{
-		if (other.tag == "Fire") 
+        Vector3 playerPosition = GetComponentInParent<Transform>().position;
+        if (other.tag == "Fire") 
 		{
 			float fireHitpoints = other.gameObject.GetComponentInChildren<Fire> ().hitpoints;
 
@@ -56,21 +59,12 @@ public class Water : MonoBehaviour {
 			else 
 			{
 				other.gameObject.GetComponentInChildren<Fire>().hitpoints = fireHitpoints - 1.0f;
-                PlayQuench();
+                int randClip = Random.Range(0, (quench.Length));
+                AudioSource.PlayClipAtPoint(quench[randClip], transform.position);
             }
 		}
 
 		Destroy (this.gameObject);
 	}
 
-    public AudioClip[] quenched;
-    public AudioSource quenchSource;
-
-    //plays the sound for water hitting the fire
-    void PlayQuench()
-    {
-        int randClip = Random.Range(0, quenched.Length);
-        quenchSource.clip = quenched[randClip];
-        quenchSource.PlayOneShot(quenched[randClip]);
-    }
 }
