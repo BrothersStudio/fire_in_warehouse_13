@@ -71,6 +71,6 @@ public class Water : MonoBehaviour {
     {
         int randClip = Random.Range(0, quenched.Length);
         quenchSource.clip = quenched[randClip];
-        quenchSource.Play();
+        quenchSource.PlayOneShot(quenched[randClip]);
     }
 }
