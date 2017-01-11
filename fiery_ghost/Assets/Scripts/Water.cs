@@ -14,10 +14,8 @@ public class Water : MonoBehaviour {
 	private Rigidbody2D rb2d;
 	private float lifetime;
 
-    public Camera SceneCamera;
-
-	// Use this for initialization
-	void Start () 
+    // Use this for initialization
+    void Start () 
 	{
 		VFX.material = waterMaterials[Random.Range(0, waterMaterials.Length)];
 
@@ -58,10 +56,21 @@ public class Water : MonoBehaviour {
 			else 
 			{
 				other.gameObject.GetComponentInChildren<Fire>().hitpoints = fireHitpoints - 1.0f;
-                SceneCamera.GetComponent<SoundEffectController>().PlayQuench();
+                PlayQuench();
             }
 		}
 
 		Destroy (this.gameObject);
 	}
+
+    public AudioClip[] quenched;
+    public AudioSource quenchSource;
+
+    //plays the sound for water hitting the fire
+    void PlayQuench()
+    {
+        int randClip = Random.Range(0, quenched.Length);
+        quenchSource.clip = quenched[randClip];
+        quenchSource.Play();
+    }
 }
