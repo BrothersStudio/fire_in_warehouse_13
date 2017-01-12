@@ -51,8 +51,6 @@ public class Water : MonoBehaviour {
 		{
 			float fireHitpoints = other.gameObject.GetComponentInParent<Fire> ().hitpoints;
 
-			Debug.Log (fireHitpoints);
-
 			if (fireHitpoints <= 0) 
 			{
 				Destroy (other.transform.parent.gameObject);

@@ -28,8 +28,6 @@ public class FireSpawnerController : MonoBehaviour {
 		{
 			for (int i = 0; i <= (Time.timeSinceLevelLoad / multiplierTime); i++) 
 			{
-				Debug.Log ("Spawned in fire");
-
 				cooldownTime = Time.timeSinceLevelLoad + fireCooldown;
 
 				Vector3 playerLocation = player.GetComponent<Transform> ().position;
