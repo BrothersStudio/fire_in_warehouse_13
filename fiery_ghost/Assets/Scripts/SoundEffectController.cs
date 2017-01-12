@@ -19,14 +19,15 @@ public class SoundEffectController : MonoBehaviour
     {
         if ((monsterController.monsterExists) && !isPlaying)
         {
-            ambiSource.PlayOneShot(ambience);
+            ambiSource.clip = ambience;
+            ambiSource.Play();
             print("music");
-            isPlaying = false;
+            isPlaying = true;
         }
-        else
+        else if (!monsterController.monsterExists)
         {
             ambiSource.Stop();
-            isPlaying = true;
+            isPlaying = false;
         }
     }
 }

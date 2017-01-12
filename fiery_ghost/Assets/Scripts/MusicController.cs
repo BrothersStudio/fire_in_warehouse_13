@@ -19,22 +19,26 @@ public class MusicController : MonoBehaviour
     private float spookyEffectAmount = 0.60f;
 
     private bool hasPlayed = false;
+
     // Use this for initialization
     void Start ()
     {
-        effectsSource.clip = spookyNoise;
+        
     }
 	
 	void FixedUpdate ()
     {
+        //when HP hits designated amt, switch to new snapshot
         if (hp_bars_0.fillAmount < stringsAmount)
         {
             stringsIn.TransitionTo(fadeInTime);
         }
-        
+        //when HP reaches certain threshold, and the noise hasn't played before, play the spooky noise
+        //and make sure it doesn't play again
         if (hp_bars_0.fillAmount < spookyEffectAmount && !hasPlayed)
         {
-            effectsSource.PlayOneShot(spookyNoise);
+            effectsSource.clip = spookyNoise;
+            effectsSource.Play();
             hasPlayed = true;
         } 		
 	}
