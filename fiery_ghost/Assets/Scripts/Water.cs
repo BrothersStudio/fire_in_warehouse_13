@@ -59,6 +59,8 @@ public class Water : MonoBehaviour {
 			else 
 			{
 				other.gameObject.GetComponentInChildren<Fire>().hitpoints = fireHitpoints - 1.0f;
+
+                //plays one of arrayed clip when water hits the fire
                 int randClip = Random.Range(0, (quench.Length));
                 AudioSource.PlayClipAtPoint(quench[randClip], transform.position);
             }
