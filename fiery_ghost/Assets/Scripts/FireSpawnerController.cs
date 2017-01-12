@@ -43,7 +43,7 @@ public class FireSpawnerController : MonoBehaviour {
 
 				GameObject newFire = Instantiate (firePrefab, spawnLocation, Quaternion.identity);
 				newFire.GetComponent<Fire> ().houseHealthbar = houseHealthbar;
-				newFire.GetComponent<Fire> ().playerHealthbar = playerHealthbar;
+				newFire.GetComponentInChildren<FireHurtbox>().playerHealthbar = playerHealthbar;
 			}
 		}
 

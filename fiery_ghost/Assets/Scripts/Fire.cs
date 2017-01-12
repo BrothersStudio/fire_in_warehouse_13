@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class Fire : MonoBehaviour {
 
 	public GameObject houseHealthbar;
-	public GameObject playerHealthbar;
 
 	public float startingHitpoints;
 	public float nominalHitpoints;
@@ -15,8 +14,6 @@ public class Fire : MonoBehaviour {
 
 	public float houseDamage;
 	public float houseDamageRate;
-	public float playerDamage;
-	public float playerDamageRate;
 
 	public float flickerRate;
 	public Light redLight;
@@ -32,7 +29,6 @@ public class Fire : MonoBehaviour {
 
 	private float nextFlicker;
 	private float nextHouseDamage;
-	private float nextPlayerDamage;
 
 	private Vector3 startingSpriteSize;
 	private Camera cam;
@@ -49,7 +45,6 @@ public class Fire : MonoBehaviour {
 		cam = Camera.main;
 
 		nextHouseDamage = houseDamageRate;
-		nextPlayerDamage = 0f;
 		nextFlicker = 0f;
 
 		indRange.x = Screen.width - (Screen.width / 6);
@@ -126,15 +121,5 @@ public class Fire : MonoBehaviour {
 	void OnBecameVisible() 
 	{
 		visible = true;
-	}
-
-	void OnTriggerStay2D(Collider2D other) 
-	{
-		if (other.tag == "Player" && Time.timeSinceLevelLoad > nextPlayerDamage) 
-		{
-			nextPlayerDamage = Time.timeSinceLevelLoad + playerDamageRate;
-
-			playerHealthbar.GetComponent<Image> ().fillAmount = playerHealthbar.GetComponent<Image> ().fillAmount - playerDamage * (hitpoints / nominalHitpoints);
-		}
 	}
 }

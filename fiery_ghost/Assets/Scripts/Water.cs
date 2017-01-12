@@ -47,26 +47,27 @@ public class Water : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other) 
 	{
-        Vector3 playerPosition = GetComponentInParent<Transform>().position;
         if (other.tag == "Fire") 
 		{
-			float fireHitpoints = other.gameObject.GetComponentInChildren<Fire> ().hitpoints;
+			float fireHitpoints = other.gameObject.GetComponentInParent<Fire> ().hitpoints;
+
+			Debug.Log (fireHitpoints);
 
 			if (fireHitpoints <= 0) 
 			{
-				Destroy (other.gameObject);
+				Destroy (other.transform.parent.gameObject);
 			} 
 			else 
 			{
-				other.gameObject.GetComponentInChildren<Fire>().hitpoints = fireHitpoints - 1.0f;
+				other.gameObject.GetComponentInParent<Fire>().hitpoints = fireHitpoints - 1.0f;
 
                 //plays one of arrayed clip when water hits the fire
                 int randClip = Random.Range(0, (quench.Length));
                 AudioSource.PlayClipAtPoint(quench[randClip], transform.position);
             }
-		}
 
-		Destroy (this.gameObject);
+			Destroy (this.gameObject);
+		}
 	}
 
 }
