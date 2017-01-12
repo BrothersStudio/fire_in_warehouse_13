@@ -31,6 +31,7 @@ public class Fire : MonoBehaviour {
 	private float nextHouseDamage;
 
 	private Vector3 startingSpriteSize;
+	private float startingMonsterExclusionRadius;
 	private Camera cam;
 	private bool visible;
 	private Vector2 indRange;
@@ -40,6 +41,7 @@ public class Fire : MonoBehaviour {
 	{
 		hitpoints = startingHitpoints;
 
+		startingMonsterExclusionRadius = GetComponentsInChildren<CircleCollider2D> () [0].radius;
 		startingSpriteSize = sprite.GetComponent<Transform>().localScale;
 		visible = sprite.GetComponent<SpriteRenderer> ().isVisible;
 		cam = Camera.main;
@@ -65,6 +67,8 @@ public class Fire : MonoBehaviour {
 			redLight.range = hitpoints * 2 / 10;
 
 			sprite.GetComponent<Transform> ().localScale = startingSpriteSize * (hitpoints / nominalHitpoints);
+
+			GetComponentsInChildren<CircleCollider2D> () [0].radius = startingMonsterExclusionRadius * (hitpoints / nominalHitpoints);
 		}
 
 		if (Time.timeSinceLevelLoad > nextHouseDamage) 
