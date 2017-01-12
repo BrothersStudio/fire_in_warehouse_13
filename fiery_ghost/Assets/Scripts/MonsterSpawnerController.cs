@@ -27,8 +27,6 @@ public class MonsterSpawnerController : MonoBehaviour {
 	{
 		if (!monsterExists && Time.timeSinceLevelLoad >= cooldownTime) 
 		{
-			Debug.Log("Spawned in monster");
-
 			monsterExists = true;
 			cooldownTime = Time.timeSinceLevelLoad + monsterCooldown;
 
