@@ -36,6 +36,7 @@ public class Fire : MonoBehaviour {
 
 	private Vector3 startingSpriteSize;
 	private float startingMonsterExclusionRadius;
+
 	private Camera cam;
 	private bool visible;
 	private Vector2 indRange;
@@ -47,8 +48,9 @@ public class Fire : MonoBehaviour {
 
 		hitpoints = Random.Range(startingHitpoints, nominalHitpoints);
 
-		startingMonsterExclusionRadius = GetComponentsInChildren<CircleCollider2D> () [0].radius;
 		startingSpriteSize = sprite.GetComponent<Transform>().localScale;
+		startingMonsterExclusionRadius = GetComponentsInChildren<CircleCollider2D> () [0].radius;
+
 		visible = sprite.GetComponent<SpriteRenderer> ().isVisible;
 		cam = Camera.main;
 
