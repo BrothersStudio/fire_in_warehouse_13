@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour {
 	public float fireRate;
 
 	public AudioClip hurt;
-	private AudioSource audio;
+	private AudioSource hurtAudio;
 
 	private bool slowed = false;
 	private float nextFire;
@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour {
 
 	void Start()
 	{
-		audio = GetComponent<AudioSource> ();
+		hurtAudio = GetComponent<AudioSource> ();
 
 		rb2d = GetComponent<Rigidbody2D> ();
 
@@ -79,7 +79,7 @@ public class PlayerController : MonoBehaviour {
 	{
 		if (source == "Fire") 
 		{
-			audio.PlayOneShot(hurt, 0.2f);
+			hurtAudio.PlayOneShot(hurt, 0.2f);
 		} 
 		else if (source == "Monster") 
 		{
