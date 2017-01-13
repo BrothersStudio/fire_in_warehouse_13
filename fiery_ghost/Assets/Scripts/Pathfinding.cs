@@ -17,7 +17,12 @@ public class Pathfinding : MonoBehaviour {
 	public static Vector2[] RequestPath(Vector2 from, Vector2 to) {
 		return instance.FindPath (from, to);
 	}
-	
+
+	public static bool IsPlayerReachable(Vector2 to)
+	{
+		return instance.ReachPlayer (to);
+	}
+
 	Vector2[] FindPath(Vector2 from, Vector2 to) {
 		
 		Stopwatch sw = new Stopwatch();
@@ -136,5 +141,17 @@ public class Pathfinding : MonoBehaviour {
 		return 14*dstX + 10 * (dstY-dstX);
 	}
 	
-	
+	bool ReachPlayer(Vector2 to)
+	{
+		Node targetNode = grid.NodeFromWorldPoint(to);
+
+		if (!targetNode.walkable) 
+		{
+			return false;
+		} 
+		else 
+		{
+			return true;
+		}
+	}
 }
