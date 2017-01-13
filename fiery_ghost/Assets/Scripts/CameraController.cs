@@ -7,13 +7,16 @@ public class CameraController : MonoBehaviour {
 
 	private Vector3 offset;
 
-	public Transform camTransform;
+	private Transform camTransform;
 
 	// How long the object should shake for.
+	[HideInInspector]
 	public float shakeDuration = 0f;
 
 	// Amplitude of the shake. A larger value shakes the camera harder.
+	[HideInInspector]
 	public float shakeAmount = 1f;
+	[HideInInspector]
 	public float shakeDecreaseFactor = 1f;
 
 	Vector3 originalPos;
