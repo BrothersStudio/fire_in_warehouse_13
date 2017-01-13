@@ -39,7 +39,8 @@ public class MonsterSpawnerController : MonoBehaviour {
 		// Heartbeat Controller
 		if (monsterExists) 
 		{
-			//heartbeatAudio.PlayOneShot(heartBeatSlow, 1f);
+			heartbeatAudio.clip = heartBeatSlow;
+			heartbeatAudio.Play ();
 		}
 
 		if (!monsterExists && !timeSet) 
