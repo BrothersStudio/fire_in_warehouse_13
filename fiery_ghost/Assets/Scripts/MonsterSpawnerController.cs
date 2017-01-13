@@ -5,6 +5,7 @@ using UnityEngine;
 public class MonsterSpawnerController : MonoBehaviour {
 
 	public GameObject playerHealthbar;
+	public CameraController mainCamera;
 
 	public GameObject player;
 	public GameObject monsterPrefab;
@@ -13,26 +14,34 @@ public class MonsterSpawnerController : MonoBehaviour {
 	public float xSpawn;
 	public float ySpawn;
 
-	private float cooldownTime;
+	private float cooldownTime = 0f;
 
 	[HideInInspector]
 	public bool monsterExists;
+	private bool timeSet;
 
 	void Start () 
 	{
-		cooldownTime = Time.timeSinceLevelLoad + monsterCooldown;
+		monsterExists = false;
+		timeSet = false;
 	}
 
 	void Update () 
 	{
+		if (!monsterExists && !timeSet) 
+		{
+			cooldownTime = Time.timeSinceLevelLoad + monsterCooldown;
+			timeSet = true;
+		}
+
 		if (!monsterExists && Time.timeSinceLevelLoad >= cooldownTime) 
 		{
 			monsterExists = true;
-			cooldownTime = Time.timeSinceLevelLoad + monsterCooldown;
-
+			timeSet = false;
 
 			Vector3 playerLocation = player.GetComponent<Transform> ().position;
 			Vector3 spawnLocation = new Vector3(0.0f,0.0f,0.0f); 
+
 			do 
 			{
 			spawnLocation = new Vector3 (
@@ -42,8 +51,10 @@ public class MonsterSpawnerController : MonoBehaviour {
 			} while (Vector3.Distance (playerLocation, spawnLocation) < minDistFromPlayer);
 
 			GameObject newMonster = Instantiate(monsterPrefab, spawnLocation, player.GetComponent<Transform> ().rotation, this.transform);
+
 			newMonster.GetComponent<MonsterController> ().player = player;
 			newMonster.GetComponent<MonsterController> ().playerHealthbar = playerHealthbar;
+			newMonster.GetComponent<MonsterController> ().mainCamera = mainCamera;
 		}
 
 	}

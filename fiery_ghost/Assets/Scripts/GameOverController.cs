@@ -17,7 +17,8 @@ public class GameOverController : MonoBehaviour {
 
 	public GameObject gameOverTitle;
 	public GameObject gameOverScore;
-	public GameObject gameOverButton;
+	public GameObject gameOverContinue;
+	public GameObject gameOverQuit;
 
 	void LateUpdate () 
 	{
@@ -40,7 +41,8 @@ public class GameOverController : MonoBehaviour {
 
 			gameOverTitle.SetActive (true);
 			gameOverScore.SetActive (true);
-			gameOverButton.SetActive (true);
+			gameOverContinue.SetActive (true);
+			gameOverQuit.SetActive (true);
 		}
 	}
 }
