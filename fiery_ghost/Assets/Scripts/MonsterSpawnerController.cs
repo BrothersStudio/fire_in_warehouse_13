@@ -65,9 +65,24 @@ public class MonsterSpawnerController : MonoBehaviour {
 			newMonster.GetComponent<MonsterController> ().player = player;
 			newMonster.GetComponent<MonsterController> ().playerHealthbar = playerHealthbar;
 			newMonster.GetComponent<MonsterController> ().mainCamera = mainCamera;
+		}
 
-			heartbeatAudio.clip = heartBeatSlow;
-			heartbeatAudio.Play ();
+		// Choosing heartbeat clip
+		if (monsterExists && !heartbeatAudio.isPlaying) 
+		{
+			Vector3 playerLocation = player.GetComponent<Transform> ().position;
+			Vector3 monsterLocation = newMonster.GetComponent<Transform> ().position;
+
+			if (Vector3.Distance (playerLocation, monsterLocation) <= 10f) 
+			{
+				heartbeatAudio.clip = heartBeatFast;
+				heartbeatAudio.Play ();
+			} 
+			else 
+			{
+				heartbeatAudio.clip = heartBeatSlow;
+				heartbeatAudio.Play ();
+			}
 		}
 	}
 }
