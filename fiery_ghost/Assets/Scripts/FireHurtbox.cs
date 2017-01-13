@@ -28,9 +28,9 @@ public class FireHurtbox : MonoBehaviour {
 
 			playerHealthbar.GetComponent<Image> ().fillAmount = playerHealthbar.GetComponent<Image> ().fillAmount - playerDamage * (fire.hitpoints / fire.nominalHitpoints);
 
-			mainCamera.shakeDuration = 1f;
+			mainCamera.shakeDuration = 0.5f;
 			mainCamera.shakeAmount = 1f;
-			mainCamera.shakeDecreaseFactor = 3f;
+			mainCamera.shakeDecreaseFactor = 5f;
 		}
 	}
 }
