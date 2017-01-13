@@ -7,6 +7,8 @@ public class Fire : MonoBehaviour {
 
 	public GameObject houseHealthbar;
 
+	private AudioSource insideFire;
+
 	public float startingHitpoints;
 	public float nominalHitpoints;
 	public float maxHitpoints;

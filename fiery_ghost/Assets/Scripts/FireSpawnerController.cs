@@ -8,6 +8,8 @@ public class FireSpawnerController : MonoBehaviour {
 	public GameObject playerHealthbar;
 	public CameraController mainCamera;
 
+	private AudioSource insideFire;
+
 	public GameObject player;
 	public GameObject firePrefab;
 	public float minDistFromPlayer;
@@ -22,6 +24,8 @@ public class FireSpawnerController : MonoBehaviour {
 	{
 		cooldownTime = fireCooldown;
 
+		insideFire = GetComponent<AudioSource> ();
+
 		GameObject newFire = Instantiate (firePrefab, new Vector3(6f, 6.6f, 0f), Quaternion.identity);
 
 		newFire.GetComponent<Fire> ().houseHealthbar = houseHealthbar;
@@ -29,6 +33,8 @@ public class FireSpawnerController : MonoBehaviour {
 
 		newFire.GetComponentInChildren<FireHurtbox>().playerHealthbar = playerHealthbar;
 		newFire.GetComponentInChildren<FireHurtbox>().mainCamera = mainCamera;
+
+		newFire.GetComponentInChildren<FireSafezone> ().safezoneAudio = insideFire;
 	}
 
 	void Update () 
@@ -51,8 +57,11 @@ public class FireSpawnerController : MonoBehaviour {
 				GameObject newFire = Instantiate (firePrefab, spawnLocation, Quaternion.identity);
 
 				newFire.GetComponent<Fire> ().houseHealthbar = houseHealthbar;
+
 				newFire.GetComponentInChildren<FireHurtbox>().playerHealthbar = playerHealthbar;
 				newFire.GetComponentInChildren<FireHurtbox>().mainCamera = mainCamera;
+
+				newFire.GetComponentInChildren<FireSafezone> ().safezoneAudio = insideFire;
 			}
 		}
 
