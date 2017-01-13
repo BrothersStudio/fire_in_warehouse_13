@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class FireSpawnerController : MonoBehaviour {
 
+	public LayerMask unwalkableMask;
+
 	public GameObject houseHealthbar;
 	public GameObject playerHealthbar;
 	public CameraController mainCamera;
@@ -45,14 +47,26 @@ public class FireSpawnerController : MonoBehaviour {
 			{
 				cooldownTime = Time.timeSinceLevelLoad + fireCooldown;
 
+				bool walkable = false;
+				float playerDist = 0f;
+				int checks = 0;
 				Vector3 playerLocation = player.GetComponent<Transform> ().position;
 				Vector3 spawnLocation = new Vector3 (0.0f, 0.0f, 0.0f); 
-				do {
+				do 
+				{
 					spawnLocation = new Vector3 (
 						Random.Range (-xSpawn, xSpawn), 
 						Random.Range (-ySpawn, ySpawn), 
 						0.0f);
-				} while (Vector3.Distance (playerLocation, spawnLocation) < minDistFromPlayer);
+
+					checks ++;
+					if (checks > 20)
+						return;
+
+					walkable = (Physics2D.OverlapCircle ((Vector2)spawnLocation, 1f, unwalkableMask) == null);
+					playerDist = Vector3.Distance(spawnLocation, playerLocation);
+				}
+				while (!walkable || (playerDist < 5f));
 
 				GameObject newFire = Instantiate (firePrefab, spawnLocation, Quaternion.identity);
 
