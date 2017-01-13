@@ -36,15 +36,10 @@ public class MonsterSpawnerController : MonoBehaviour {
 
 	void Update () 
 	{
-		// Heartbeat Controller
-		if (monsterExists) 
-		{
-			heartbeatAudio.clip = heartBeatSlow;
-			heartbeatAudio.Play ();
-		}
-
 		if (!monsterExists && !timeSet) 
 		{
+			heartbeatAudio.Stop ();
+
 			cooldownTime = Time.timeSinceLevelLoad + monsterCooldown;
 			timeSet = true;
 		}
@@ -55,7 +50,7 @@ public class MonsterSpawnerController : MonoBehaviour {
 			timeSet = false;
 
 			Vector3 playerLocation = player.GetComponent<Transform> ().position;
-			Vector3 spawnLocation = new Vector3(0.0f,0.0f,0.0f); 
+			Vector3 spawnLocation = new Vector3(0.0f,0.0f,0.0f);  // Need to instantiate before the loop
 
 			do 
 			{
@@ -70,6 +65,9 @@ public class MonsterSpawnerController : MonoBehaviour {
 			newMonster.GetComponent<MonsterController> ().player = player;
 			newMonster.GetComponent<MonsterController> ().playerHealthbar = playerHealthbar;
 			newMonster.GetComponent<MonsterController> ().mainCamera = mainCamera;
+
+			heartbeatAudio.clip = heartBeatSlow;
+			heartbeatAudio.Play ();
 		}
 	}
 }
