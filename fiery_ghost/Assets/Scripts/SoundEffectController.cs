@@ -21,7 +21,6 @@ public class SoundEffectController : MonoBehaviour
         {
             ambiSource.clip = ambience;
             ambiSource.Play();
-            print("music");
             isPlaying = true;
         }
         else if (!monsterController.monsterExists)
