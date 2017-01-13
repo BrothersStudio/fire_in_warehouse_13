@@ -110,15 +110,16 @@ public class Grid : MonoBehaviour {
 					return grid [verticalSearchX, centreY - radius];
 				}
 			}
+
 			// right
-			if (InBounds(centreY + radius, horizontalSearchY)) {
+			if (InBounds(centreX + radius, horizontalSearchY)) {
 				if (grid[centreX + radius, horizontalSearchY].walkable) {
 					return grid [centreX + radius, horizontalSearchY];
 				}
 			}
 
 			// left
-			if (InBounds(centreY - radius, horizontalSearchY)) {
+			if (InBounds(centreX - radius, horizontalSearchY)) {
 				if (grid[centreX - radius, horizontalSearchY].walkable) {
 					return grid [centreX - radius, horizontalSearchY];
 				}
