@@ -43,7 +43,5 @@ public class CameraController : MonoBehaviour {
 
 			originalPos = camTransform.localPosition;
 		}
-
-
 	}
 }

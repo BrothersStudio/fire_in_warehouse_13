@@ -14,6 +14,7 @@ public class Fire : MonoBehaviour {
 
 	public float houseDamage;
 	public float houseDamageRate;
+	public float houseDamageAge;
 
 	public float flickerRate;
 	public Light redLight;
@@ -27,6 +28,7 @@ public class Fire : MonoBehaviour {
 	[HideInInspector]
 	public float hitpoints;
 
+	private float timeOfBirth;
 	private float nextFlicker;
 	private float nextHouseDamage;
 
@@ -39,7 +41,9 @@ public class Fire : MonoBehaviour {
 
 	void Start () 
 	{
-		hitpoints = startingHitpoints;
+		timeOfBirth = Time.timeSinceLevelLoad;
+
+		hitpoints = Random.Range(startingHitpoints, nominalHitpoints);
 
 		startingMonsterExclusionRadius = GetComponentsInChildren<CircleCollider2D> () [0].radius;
 		startingSpriteSize = sprite.GetComponent<Transform>().localScale;
@@ -71,11 +75,14 @@ public class Fire : MonoBehaviour {
 			GetComponentsInChildren<CircleCollider2D> () [0].radius = startingMonsterExclusionRadius * (hitpoints / nominalHitpoints);
 		}
 
-		if (Time.timeSinceLevelLoad > nextHouseDamage) 
+		if (timeOfBirth > houseDamageAge) 
 		{
-			nextHouseDamage = Time.timeSinceLevelLoad + houseDamageRate;
+			if (Time.timeSinceLevelLoad > nextHouseDamage) 
+			{
+				nextHouseDamage = Time.timeSinceLevelLoad + houseDamageRate;
 
-			houseHealthbar.GetComponent<Image> ().fillAmount = houseHealthbar.GetComponent<Image> ().fillAmount - houseDamage * (hitpoints / nominalHitpoints);
+				houseHealthbar.GetComponent<Image> ().fillAmount = houseHealthbar.GetComponent<Image> ().fillAmount - houseDamage * (hitpoints / nominalHitpoints);
+			}
 		}
 	}
 

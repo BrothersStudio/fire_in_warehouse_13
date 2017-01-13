@@ -69,5 +69,16 @@ public class PlayerController : MonoBehaviour {
 
 		rb2d.AddForce (movement);
 	}
-		
+
+	public void Damage(string source)
+	{
+		if (source == "Fire") 
+		{
+			Debug.Log("Fire damage!");
+		} 
+		else if (source == "Monster") 
+		{
+			Debug.Log ("Monster damage!");
+		}
+	}
 }
