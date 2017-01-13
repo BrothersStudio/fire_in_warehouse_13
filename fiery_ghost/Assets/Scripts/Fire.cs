@@ -7,7 +7,7 @@ public class Fire : MonoBehaviour {
 
 	public GameObject houseHealthbar;
 
-	private AudioSource insideFire;
+	private AudioSource fireSource;
 
 	public float startingHitpoints;
 	public float nominalHitpoints;
@@ -48,6 +48,8 @@ public class Fire : MonoBehaviour {
 
 		hitpoints = Random.Range(startingHitpoints, nominalHitpoints);
 
+		fireSource = GetComponent<AudioSource> ();
+
 		startingSpriteSize = sprite.GetComponent<Transform>().localScale;
 		startingMonsterExclusionRadius = GetComponentsInChildren<CircleCollider2D> () [0].radius;
 
@@ -77,6 +79,8 @@ public class Fire : MonoBehaviour {
 			sprite.GetComponent<Transform> ().localScale = startingSpriteSize * (hitpoints / nominalHitpoints);
 
 			GetComponentsInChildren<CircleCollider2D> () [0].radius = startingMonsterExclusionRadius * (hitpoints / nominalHitpoints);
+
+			fireSource.volume = (hitpoints / nominalHitpoints);
 		}
 
 		if (timeOfBirth > houseDamageAge) 
@@ -87,6 +91,11 @@ public class Fire : MonoBehaviour {
 
 				houseHealthbar.GetComponent<Image> ().fillAmount = houseHealthbar.GetComponent<Image> ().fillAmount - houseDamage * (hitpoints / nominalHitpoints);
 			}
+		}
+
+		if (!fireSource.isPlaying) 
+		{
+			fireSource.Play ();
 		}
 	}
 
