@@ -14,6 +14,9 @@ public class PlayerController : MonoBehaviour {
 	public Transform waterSpawn;
 	public float fireRate;
 
+	public AudioClip hurt;
+	private AudioSource audio;
+
 	private bool slowed = false;
 	private float nextFire;
 	private Rigidbody2D rb2d;
@@ -21,6 +24,8 @@ public class PlayerController : MonoBehaviour {
 
 	void Start()
 	{
+		audio = GetComponent<AudioSource> ();
+
 		rb2d = GetComponent<Rigidbody2D> ();
 
 		// Performance consideration
@@ -74,7 +79,7 @@ public class PlayerController : MonoBehaviour {
 	{
 		if (source == "Fire") 
 		{
-			Debug.Log("Fire damage!");
+			audio.PlayOneShot(hurt, 0.2f);
 		} 
 		else if (source == "Monster") 
 		{
