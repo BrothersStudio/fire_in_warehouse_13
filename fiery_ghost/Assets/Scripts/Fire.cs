@@ -83,7 +83,7 @@ public class Fire : MonoBehaviour {
 			fireSource.volume = (hitpoints / nominalHitpoints);
 		}
 
-		if (timeOfBirth > houseDamageAge) 
+		if (Time.timeSinceLevelLoad >= timeOfBirth + houseDamageAge) 
 		{
 			if (Time.timeSinceLevelLoad > nextHouseDamage) 
 			{

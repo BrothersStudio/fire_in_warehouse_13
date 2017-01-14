@@ -28,8 +28,10 @@ public class MonsterSpawnerController : MonoBehaviour {
 
 	void Start () 
 	{
+		cooldownTime = 7f;
+
 		monsterExists = false;
-		timeSet = false;
+		timeSet = true;
 
 		heartbeatAudio = GetComponent<AudioSource> ();
 	}
@@ -38,7 +40,7 @@ public class MonsterSpawnerController : MonoBehaviour {
 	{
 		if (!monsterExists && !timeSet) 
 		{
-			heartbeatAudio.Stop ();
+			//heartbeatAudio.Stop ();
 
 			cooldownTime = Time.timeSinceLevelLoad + monsterCooldown;
 			timeSet = true;
@@ -58,7 +60,8 @@ public class MonsterSpawnerController : MonoBehaviour {
 				               Random.Range (-xSpawn, xSpawn), 
 				               Random.Range (-ySpawn, ySpawn), 
 				               0.0f);
-			} while (Vector3.Distance (playerLocation, spawnLocation) < minDistFromPlayer);
+			} 
+			while (Vector3.Distance (playerLocation, spawnLocation) < minDistFromPlayer);
 
 			newMonster = Instantiate(monsterPrefab, spawnLocation, player.GetComponent<Transform> ().rotation, this.transform);
 
@@ -80,8 +83,8 @@ public class MonsterSpawnerController : MonoBehaviour {
 			} 
 			else 
 			{
-				heartbeatAudio.clip = heartBeatSlow;
-				heartbeatAudio.Play ();
+				//heartbeatAudio.clip = heartBeatSlow;
+				//heartbeatAudio.Play ();
 			}
 		}
 	}

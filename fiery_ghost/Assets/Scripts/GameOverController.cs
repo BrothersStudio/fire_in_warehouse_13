@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class GameOverController : MonoBehaviour {
 
 	public GameObject player;
+	public GameObject mainCamera;
 
 	public GameObject monsterController;
 	public GameObject fireController;
@@ -32,6 +33,7 @@ public class GameOverController : MonoBehaviour {
 			gameOverScore.GetComponent<Text> ().text = "Score: " + score;
 
 			player.SetActive (false);
+			mainCamera.GetComponent<AudioListener> ().enabled = true;
 
 			gameObject.SetActive(false);  // This is the game over monitor
 			monsterController.SetActive (false);
