@@ -57,6 +57,9 @@ public class Water : MonoBehaviour {
 			if (fireHitpoints <= 0) 
 			{
 				AudioSource newSource = PlayClipAt(douse, transform.position, 0.25f);
+
+				other.transform.parent.GetComponent<Fire>().score.AddScore (5f);
+
 				Destroy (other.transform.parent.gameObject);
 			} 
 			else 
