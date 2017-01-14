@@ -29,6 +29,8 @@ public class Fire : MonoBehaviour {
 	public GUIStyle gooey;
 	[HideInInspector]
 	public float hitpoints;
+	[HideInInspector]
+	public UpdateTime score;
 
 	private float timeOfBirth;
 	private float nextFlicker;

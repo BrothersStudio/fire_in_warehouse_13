@@ -8,6 +8,7 @@ public class FireSpawnerController : MonoBehaviour {
 
 	public DamageController houseHealthbar;
 	public DamageController playerHealthbar;
+	public UpdateTime score;
 	public CameraController mainCamera;
 
 	private AudioSource insideFire;
@@ -32,6 +33,7 @@ public class FireSpawnerController : MonoBehaviour {
 
 		newFire.GetComponent<Fire> ().houseHealthbar = houseHealthbar;
 		newFire.GetComponent<Fire> ().startingHitpoints = 100;
+		newFire.GetComponent<Fire> ().score = score;
 
 		newFire.GetComponentInChildren<FireHurtbox>().playerHealthbar = playerHealthbar;
 		newFire.GetComponentInChildren<FireHurtbox>().mainCamera = mainCamera;
@@ -79,6 +81,7 @@ public class FireSpawnerController : MonoBehaviour {
 				GameObject newFire = Instantiate (firePrefab, spawnLocation, Quaternion.identity);
 
 				newFire.GetComponent<Fire> ().houseHealthbar = houseHealthbar;
+				newFire.GetComponent<Fire> ().score = score;
 
 				newFire.GetComponentInChildren<FireHurtbox>().playerHealthbar = playerHealthbar;
 				newFire.GetComponentInChildren<FireHurtbox>().mainCamera = mainCamera;
