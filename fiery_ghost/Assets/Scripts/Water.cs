@@ -56,7 +56,7 @@ public class Water : MonoBehaviour {
 
 			if (fireHitpoints <= 0) 
 			{
-				AudioSource.PlayClipAtPoint(douse, transform.position);
+				AudioSource newSource = PlayClipAt(douse, transform.position, 0.25f);
 				Destroy (other.transform.parent.gameObject);
 			} 
 			else 
@@ -70,5 +70,20 @@ public class Water : MonoBehaviour {
 
 			Destroy (this.gameObject);
 		}
+	}
+
+	AudioSource PlayClipAt(AudioClip clip, Vector3 pos, float volume)
+	{
+		GameObject tempGO = new GameObject("TempAudio"); 
+		tempGO.transform.position = pos; 
+		AudioSource aSource = tempGO.AddComponent<AudioSource>();
+
+		aSource.clip = clip; 
+		aSource.volume = volume;
+		aSource.spatialBlend = 0;
+
+		aSource.Play(); 
+		Destroy(tempGO, clip.length); 
+		return aSource; 
 	}
 }
