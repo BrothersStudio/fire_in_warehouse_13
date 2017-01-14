@@ -6,8 +6,8 @@ public class FireSpawnerController : MonoBehaviour {
 
 	public LayerMask unwalkableMask;
 
-	public GameObject houseHealthbar;
-	public GameObject playerHealthbar;
+	public DamageController houseHealthbar;
+	public DamageController playerHealthbar;
 	public CameraController mainCamera;
 
 	private AudioSource insideFire;

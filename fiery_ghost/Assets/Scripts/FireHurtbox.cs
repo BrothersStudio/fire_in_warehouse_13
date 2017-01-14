@@ -7,7 +7,7 @@ public class FireHurtbox : MonoBehaviour {
 
 	public Fire fire;
 
-	public GameObject playerHealthbar;
+	public DamageController playerHealthbar;
 	public CameraController mainCamera;
 
 	public float playerDamage;
@@ -27,7 +27,7 @@ public class FireHurtbox : MonoBehaviour {
 			nextPlayerDamage = Time.timeSinceLevelLoad + playerDamageRate;
 
 			other.GetComponent<PlayerController> ().Damage ("Fire");
-			playerHealthbar.GetComponent<Image> ().fillAmount = playerHealthbar.GetComponent<Image> ().fillAmount - playerDamage * (fire.hitpoints / fire.nominalHitpoints);
+			playerHealthbar.Damage(playerDamage * (fire.hitpoints / fire.nominalHitpoints));
 
 			mainCamera.shakeDuration = 0.5f;
 			mainCamera.shakeAmount = 1f;

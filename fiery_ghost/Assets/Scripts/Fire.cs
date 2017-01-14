@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Fire : MonoBehaviour {
 
-	public GameObject houseHealthbar;
+	public DamageController houseHealthbar;
 
 	private AudioSource fireSource;
 
@@ -89,7 +89,7 @@ public class Fire : MonoBehaviour {
 			{
 				nextHouseDamage = Time.timeSinceLevelLoad + houseDamageRate;
 
-				houseHealthbar.GetComponent<Image> ().fillAmount = houseHealthbar.GetComponent<Image> ().fillAmount - houseDamage * (hitpoints / nominalHitpoints);
+				houseHealthbar.Damage(houseDamage * (hitpoints / nominalHitpoints));
 			}
 		}
 
@@ -105,7 +105,7 @@ public class Fire : MonoBehaviour {
 		{
 			nextFlicker = Time.timeSinceLevelLoad + Random.Range (0f, flickerRate);
 
-			yellowLight.range = yellowLight.range + Random.Range (-5, 5);
+			yellowLight.range = Mathf.Clamp(yellowLight.range + Random.Range (-0.5f, 0.5f), 1.5f, 3.0f);
 
 			yellowLight.intensity = yellowLight.intensity + Random.Range (-0.1f, 0.1f);
 			redLight.intensity = redLight.intensity + Random.Range (-0.1f, 0.2f);

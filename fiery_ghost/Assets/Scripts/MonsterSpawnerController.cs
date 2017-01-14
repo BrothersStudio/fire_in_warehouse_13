@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MonsterSpawnerController : MonoBehaviour {
 
-	public GameObject playerHealthbar;
+	public DamageController playerHealthbar;
 	public CameraController mainCamera;
 
 	public GameObject player;
