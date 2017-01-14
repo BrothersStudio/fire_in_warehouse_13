@@ -19,12 +19,6 @@ public class MusicController : MonoBehaviour
     private float spookyEffectAmount = 0.60f;
 
     private bool hasPlayed = false;
-
-    // Use this for initialization
-    void Start ()
-    {
-        
-    }
 	
 	void FixedUpdate ()
     {

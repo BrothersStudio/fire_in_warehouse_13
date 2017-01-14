@@ -41,8 +41,10 @@ public class Water : MonoBehaviour {
 
 	void Update()
 	{
-		if (Time.timeSinceLevelLoad > lifetime + waterLifetime)
+		if (Time.timeSinceLevelLoad > lifetime + waterLifetime) 
+		{
 			Object.Destroy (this.gameObject);
+		}
 	}
 
 	void OnTriggerEnter2D(Collider2D other) 
