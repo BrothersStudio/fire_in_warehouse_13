@@ -35,7 +35,7 @@ public class MusicController : MonoBehaviour
         }
         //when HP reaches certain threshold, and the noise hasn't played before, play the spooky noise
         //and make sure it doesn't play again
-		if ((player_hp.fillAmount < stringsAmount || house_hp.fillAmount < stringsAmount) && !hasPlayed)
+		if ((player_hp.fillAmount < spookyEffectAmount || house_hp.fillAmount < spookyEffectAmount) && !hasPlayed)
         {
             effectsSource.clip = spookyNoise;
             effectsSource.Play();

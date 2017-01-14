@@ -45,6 +45,14 @@ public class FireSpawnerController : MonoBehaviour {
 		{
 			for (int i = 0; i < Mathf.Clamp((Time.timeSinceLevelLoad / multiplierTime), 1, 3); i++) 
 			{
+				if (Mathf.Clamp((Time.timeSinceLevelLoad / multiplierTime), 1, 3) == 3)
+				{
+					if (Random.Range(0f, 1f) > 0.75)
+					{
+						continue;
+					}
+				}
+
 				cooldownTime = Time.timeSinceLevelLoad + fireCooldown;
 
 				bool walkable = false;
