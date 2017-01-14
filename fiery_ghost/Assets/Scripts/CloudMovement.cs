@@ -4,24 +4,16 @@ using UnityEngine;
 
 public class CloudMovement : MonoBehaviour
 {
-
-    public Vector2 velocity = Vector2.zero;
-    public Vector3 startPos;
-
-    private Rigidbody2D body2d;
-
-    void Awake()
-    {
-        startPos = transform.position;
-        body2d = GetComponent<Rigidbody2D>();
-    }
+	public float speed;
 
     void FixedUpdate()
     {
-        body2d.velocity = velocity;
-        if (transform.position.x >= (startPos.x + 1800))
-        {
-            transform.position = startPos;
-        }
+		Vector3 newPosition = transform.position + new Vector3 (speed * Time.deltaTime, 0f, 0f);
+		transform.position = newPosition;
     }
+
+	void OnBecameInvisible()
+	{
+		transform.position = new Vector3 (-11f, Random.Range (-1f, 4f), 0f);
+	}
 }
