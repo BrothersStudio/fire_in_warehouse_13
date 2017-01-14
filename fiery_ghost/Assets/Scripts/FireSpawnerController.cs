@@ -43,6 +43,7 @@ public class FireSpawnerController : MonoBehaviour {
 	{
 		if (Time.timeSinceLevelLoad >= cooldownTime) 
 		{
+			for (int i = 0; i < Mathf.Clamp((Time.timeSinceLevelLoad / multiplierTime), 1, 3); i++) 
 			{
 				cooldownTime = Time.timeSinceLevelLoad + fireCooldown;
 
