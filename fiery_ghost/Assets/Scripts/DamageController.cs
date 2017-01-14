@@ -8,14 +8,14 @@ public class DamageController : MonoBehaviour {
 	public Image mainBar;
 	public Image lagBar;
 
-	private float lastUpdate = 0f;
+	private float nextUpdate = 0f;
 	private float batchDamage = 0f;
 
 	void LateUpdate()
 	{
-		if (Time.timeSinceLevelLoad > 5.0f + lastUpdate) 
+		if (Time.timeSinceLevelLoad > nextUpdate) 
 		{
-			lastUpdate = Time.timeSinceLevelLoad;
+			nextUpdate = Time.timeSinceLevelLoad + 5.0f;
 
 			if (batchDamage > 0f) 
 			{
