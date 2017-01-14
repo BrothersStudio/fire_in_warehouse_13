@@ -85,6 +85,7 @@ public class PlayerController : MonoBehaviour {
 		} 
 		else if (source == "Monster") 
 		{
+			hurtAudio.PlayOneShot(evilLaugh, 0.4f);
 		}
 	}
 }
