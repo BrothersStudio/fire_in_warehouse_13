@@ -10,8 +10,9 @@ public class Water : MonoBehaviour {
 	public MeshRenderer VFX;
 
 	public Material[] waterMaterials;
+
+	public AudioClip douse;
     public AudioClip[] quench;
-    public AudioSource quenchSource;
 
 	private Rigidbody2D rb2d;
 	private float lifetime;
@@ -55,6 +56,7 @@ public class Water : MonoBehaviour {
 
 			if (fireHitpoints <= 0) 
 			{
+				AudioSource.PlayClipAtPoint(douse, transform.position);
 				Destroy (other.transform.parent.gameObject);
 			} 
 			else 
@@ -69,5 +71,4 @@ public class Water : MonoBehaviour {
 			Destroy (this.gameObject);
 		}
 	}
-
 }
