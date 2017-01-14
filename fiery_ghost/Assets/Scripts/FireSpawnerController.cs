@@ -47,7 +47,7 @@ public class FireSpawnerController : MonoBehaviour {
 			{
 				if (Mathf.Clamp((Time.timeSinceLevelLoad / multiplierTime), 1, 3) == 3)
 				{
-					if (Random.Range(0f, 1f) > 0.75)
+					if (Random.Range(0f, 1f) > 0.60)
 					{
 						continue;
 					}
