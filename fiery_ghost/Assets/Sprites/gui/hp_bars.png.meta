@@ -1,15 +1,9 @@
 fileFormatVersion: 2
-guid: ae8cbd4d5e73f884f99d7355a0f73595
-timeCreated: 1483891574
+guid: 7d55943396ccf434dba5d59f48f2be5d
+timeCreated: 1484359784
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: hp_bars_0
-    21300002: hp_bars_1
-    21300004: hp_bars_2
-    21300006: hp_bars_3
-    21300008: hp_bars_4
-    21300010: hp_bars_5
+  fileIDToRecycleName: {}
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -40,7 +34,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -64,95 +58,9 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
-  - buildTarget: Standalone
-    maxTextureSize: 2048
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: hp_bars_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 2608
-        width: 3420
-        height: 392
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: hp_bars_1
-      rect:
-        serializedVersion: 2
-        x: 78
-        y: 2186
-        width: 3264
-        height: 384
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: hp_bars_2
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 1584
-        width: 3420
-        height: 545
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: hp_bars_3
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 1025
-        width: 3420
-        height: 544
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: hp_bars_4
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 445
-        width: 3420
-        height: 545
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: hp_bars_5
-      rect:
-        serializedVersion: 2
-        x: 83
-        y: 28
-        width: 3263
-        height: 384
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
+    sprites: []
     outline: []
   spritePackingTag: 
   userData: 
