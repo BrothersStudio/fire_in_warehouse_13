@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour {
 	public float fireRate;
 
 	public AudioClip hurt;
+	public AudioClip evilLaugh;
 	private AudioSource hurtAudio;
 
 	private bool slowed = false;
@@ -84,7 +85,6 @@ public class PlayerController : MonoBehaviour {
 		} 
 		else if (source == "Monster") 
 		{
-			hurtAudio.PlayOneShot(hurt, 0.2f);
 		}
 	}
 }
