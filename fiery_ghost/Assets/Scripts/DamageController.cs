@@ -8,10 +8,34 @@ public class DamageController : MonoBehaviour {
 	public Image mainBar;
 	public Image lagBar;
 
-	public void Damage(float damage)
+	private float lastUpdate = 0f;
+	private float batchDamage = 0f;
+
+	void LateUpdate()
 	{
-		mainBar.fillAmount -= damage;
-		StartCoroutine (LagDamage (damage));
+		if (Time.timeSinceLevelLoad > 5.0f + lastUpdate) 
+		{
+			lastUpdate = Time.timeSinceLevelLoad;
+
+			if (batchDamage > 0f) 
+			{
+				ApplyDamage ();
+			}
+		}
+	}
+
+	public void Damage(float damage, string target)
+	{
+		batchDamage += damage;
+		if (target == "Player")
+			ApplyDamage ();
+	}
+
+	void ApplyDamage ()
+	{
+		mainBar.fillAmount -= batchDamage;
+		StartCoroutine (LagDamage (batchDamage));
+		batchDamage = 0f;
 	}
 
 	IEnumerator LagDamage(float damage) 

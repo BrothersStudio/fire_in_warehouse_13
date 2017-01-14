@@ -89,7 +89,7 @@ public class Fire : MonoBehaviour {
 			{
 				nextHouseDamage = Time.timeSinceLevelLoad + houseDamageRate;
 
-				houseHealthbar.Damage(houseDamage * (hitpoints / nominalHitpoints));
+				houseHealthbar.Damage(houseDamage * (hitpoints / nominalHitpoints), "House");
 			}
 		}
 
