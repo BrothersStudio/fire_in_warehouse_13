@@ -94,6 +94,7 @@ public class Water : MonoBehaviour {
 
 		aSource.clip = clip; 
 		aSource.volume = volume;
+		aSource.priority = 200;
 		aSource.spatialBlend = 0;
 
 		aSource.Play(); 
