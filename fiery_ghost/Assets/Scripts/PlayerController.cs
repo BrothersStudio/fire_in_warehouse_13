@@ -16,7 +16,8 @@ public class PlayerController : MonoBehaviour {
 
 	public AudioClip hurt;
 	public AudioClip evilLaugh;
-	private AudioSource hurtAudio;
+	public AudioClip[] footsteps;
+	private AudioSource playerSource;
 
 	private bool slowed = false;
 	private float nextFire;
@@ -25,7 +26,7 @@ public class PlayerController : MonoBehaviour {
 
 	void Start()
 	{
-		hurtAudio = GetComponent<AudioSource> ();
+		playerSource = GetComponent<AudioSource> ();
 
 		rb2d = GetComponent<Rigidbody2D> ();
 
@@ -70,6 +71,12 @@ public class PlayerController : MonoBehaviour {
 		float moveHorizontal = Input.GetAxisRaw ("Horizontal");
 		float moveVertical = Input.GetAxisRaw ("Vertical");
 
+		if (!playerSource.isPlaying && (moveHorizontal != 0 || moveVertical != 0)) 
+		{
+			playerSource.clip = footsteps [Random.Range (0, footsteps.Length)];
+			playerSource.Play ();
+		}
+
 		Vector2 movement = new Vector2 (moveHorizontal, moveVertical);
 		movement.Normalize ();
 		movement = movement * playerSpeed;
@@ -81,11 +88,11 @@ public class PlayerController : MonoBehaviour {
 	{
 		if (source == "Fire") 
 		{
-			hurtAudio.PlayOneShot(hurt, 0.2f);
+			playerSource.PlayOneShot(hurt, 0.2f);
 		} 
 		else if (source == "Monster") 
 		{
-			hurtAudio.PlayOneShot(evilLaugh, 0.4f);
+			playerSource.PlayOneShot(evilLaugh, 0.4f);
 		}
 	}
 }
