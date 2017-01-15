@@ -54,7 +54,7 @@ public class Water : MonoBehaviour {
 		{
 			float fireHitpoints = other.gameObject.GetComponentInParent<Fire> ().hitpoints;
 
-			if (fireHitpoints <= 0) 
+			if (fireHitpoints <= 15) 
 			{
 				PlayClipAt(douse, transform.position, 0.35f);
 
