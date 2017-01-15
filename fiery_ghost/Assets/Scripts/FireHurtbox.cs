@@ -7,7 +7,9 @@ public class FireHurtbox : MonoBehaviour {
 
 	public Fire fire;
 
+	[HideInInspector]
 	public DamageController playerHealthbar;
+	[HideInInspector]
 	public CameraController mainCamera;
 
 	public float playerDamage;

@@ -56,7 +56,7 @@ public class Water : MonoBehaviour {
 
 			if (fireHitpoints <= 0) 
 			{
-				AudioSource newSource = PlayClipAt(douse, transform.position, 0.25f);
+				AudioSource newSource = PlayClipAt(douse, transform.position, 0.40f);
 
 				other.transform.parent.GetComponent<Fire>().score.AddScore (5f);
 
@@ -67,10 +67,21 @@ public class Water : MonoBehaviour {
 				other.gameObject.GetComponentInParent<Fire>().hitpoints = fireHitpoints - 1.0f;
 
                 //plays one of arrayed clip when water hits the fire
-                int randClip = Random.Range(0, (quench.Length));
+                int randClip = Random.Range(0, quench.Length);
                 AudioSource.PlayClipAtPoint(quench[randClip], transform.position);
             }
 
+			Destroy (this.gameObject);
+		}
+		else if (other.tag == "Monster") 
+		{
+			MonsterController monster = other.gameObject.GetComponentInParent<MonsterController> ();
+			if (!monster.monsterAudio.isPlaying) 
+			{
+				int randClip = Random.Range(0, monster.slurps.Length);
+				monster.monsterAudio.clip = monster.slurps[randClip];
+				monster.monsterAudio.Play ();
+			}
 			Destroy (this.gameObject);
 		}
 	}
