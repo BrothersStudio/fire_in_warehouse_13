@@ -38,6 +38,7 @@ public class Fire : MonoBehaviour {
 
 	private Vector3 startingSpriteSize;
 	private float startingMonsterExclusionRadius;
+	private float startingHitboxRadius;
 
 	private Camera cam;
 	private bool visible;
@@ -54,6 +55,7 @@ public class Fire : MonoBehaviour {
 
 		startingSpriteSize = sprite.GetComponent<Transform>().localScale;
 		startingMonsterExclusionRadius = GetComponentsInChildren<CircleCollider2D> () [0].radius;
+		startingHitboxRadius = GetComponentsInChildren<CircleCollider2D> () [1].radius;
 
 		visible = sprite.GetComponent<SpriteRenderer> ().isVisible;
 		cam = Camera.main;
@@ -81,6 +83,7 @@ public class Fire : MonoBehaviour {
 			sprite.GetComponent<Transform> ().localScale = startingSpriteSize * (hitpoints / nominalHitpoints);
 
 			GetComponentsInChildren<CircleCollider2D> () [0].radius = startingMonsterExclusionRadius * (hitpoints / nominalHitpoints);
+			GetComponentsInChildren<CircleCollider2D> () [1].radius = startingHitboxRadius * (hitpoints / nominalHitpoints);
 
 			fireSource.volume = (hitpoints / nominalHitpoints);
 		}

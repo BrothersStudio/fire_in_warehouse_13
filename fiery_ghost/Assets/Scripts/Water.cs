@@ -50,7 +50,7 @@ public class Water : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other) 
 	{
-        if (other.tag == "Fire") 
+        if (other.tag == "Firehit") 
 		{
 			float fireHitpoints = other.gameObject.GetComponentInParent<Fire> ().hitpoints;
 
