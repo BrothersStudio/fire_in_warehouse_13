@@ -17,7 +17,8 @@ public class PlayerController : MonoBehaviour {
 	public AudioClip hurt;
 	public AudioClip evilLaugh;
 	public AudioClip[] footsteps;
-	private AudioSource playerSource;
+	public AudioSource playerSource;
+	public AudioSource waterSource;
 
 	private bool slowed = false;
 	private float nextFire;
@@ -58,11 +59,17 @@ public class PlayerController : MonoBehaviour {
 				slowed = true;
 				playerSpeed = playerSpeed / fireSlowdownFactor;
 			}
+
+			if (!waterSource.isPlaying) 
+			{
+				waterSource.Play ();
+			}
 		} 
 		else if (slowed == true && Time.timeSinceLevelLoad > nextFire) 
 		{
 			slowed = false;
 			playerSpeed = playerSpeed * fireSlowdownFactor;
+			waterSource.Stop ();
 		}
 	}
 		
