@@ -24,7 +24,7 @@ public class FireHurtbox : MonoBehaviour {
 
 	void OnTriggerStay2D(Collider2D other) 
 	{
-		if (other.tag == "Player" && Time.timeSinceLevelLoad > nextPlayerDamage) 
+		if (other.tag == "Player" && Time.timeSinceLevelLoad > nextPlayerDamage)
 		{
 			nextPlayerDamage = Time.timeSinceLevelLoad + playerDamageRate;
 

@@ -50,11 +50,11 @@ public class Water : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other) 
 	{
-        if (other.tag == "Fire") 
+        if (other.tag == "Firehit") 
 		{
 			float fireHitpoints = other.gameObject.GetComponentInParent<Fire> ().hitpoints;
 
-			if (fireHitpoints <= 0) 
+			if (fireHitpoints <= 15) 
 			{
 				PlayClipAt(douse, transform.position, 0.35f);
 
