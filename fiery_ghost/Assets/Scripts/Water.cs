@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Water : MonoBehaviour {
 
+	public float damage;
 	public float speed;
 	public float waterVariance;
 	public float waterLifetime;
@@ -56,7 +57,7 @@ public class Water : MonoBehaviour {
 
 			if (fireHitpoints <= 15) 
 			{
-				PlayClipAt(douse, transform.position, 0.35f, 128);
+				PlayClipAt(douse, transform.position, 0.35f, 30);
 
 				other.transform.parent.GetComponent<Fire>().score.AddScore (5f);
 
@@ -64,7 +65,7 @@ public class Water : MonoBehaviour {
 			} 
 			else 
 			{
-				other.gameObject.GetComponentInParent<Fire>().hitpoints = fireHitpoints - 1.0f;
+				other.gameObject.GetComponentInParent<Fire>().hitpoints = fireHitpoints - damage;
 
                 //plays one of arrayed clip when water hits the fire
                 int randClip = Random.Range(0, quench.Length);

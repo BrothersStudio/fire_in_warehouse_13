@@ -46,6 +46,10 @@ public class FireSpawnerController : MonoBehaviour {
 			} 
 			else if (Time.timeSinceLevelLoad / multiplierTime > 2) 
 			{
+				numFires = 3;
+			}
+			else if (Time.timeSinceLevelLoad / multiplierTime > 3) 
+			{
 				numFires = Random.Range (1, 3);
 			}
 

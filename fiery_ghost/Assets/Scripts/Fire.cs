@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Fire : MonoBehaviour {
 
+	[HideInInspector]
 	public DamageController houseHealthbar;
 
 	private AudioSource fireSource;

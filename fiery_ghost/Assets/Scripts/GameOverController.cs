@@ -29,6 +29,8 @@ public class GameOverController : MonoBehaviour {
 		if (houseHealth <= 0 || playerHealth <= 0) 
 		{
 			// Game over!
+			Debug.Log("Game lasted: " + Time.timeSinceLevelLoad.ToString());
+
 			string score = scoreText.GetComponent<Text>().text;
 			gameOverScore.GetComponent<Text> ().text = "Score: " + score;
 
