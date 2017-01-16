@@ -56,7 +56,7 @@ public class Water : MonoBehaviour {
 
 			if (fireHitpoints <= 15) 
 			{
-				PlayClipAt(douse, transform.position, 0.35f);
+				PlayClipAt(douse, transform.position, 0.35f, 128);
 
 				other.transform.parent.GetComponent<Fire>().score.AddScore (5f);
 
@@ -68,7 +68,7 @@ public class Water : MonoBehaviour {
 
                 //plays one of arrayed clip when water hits the fire
                 int randClip = Random.Range(0, quench.Length);
-                AudioSource.PlayClipAtPoint(quench[randClip], transform.position);
+                AudioSource.PlayClipAtPoint(quench[randClip], transform.position, 200);
             }
 
 			Destroy (this.gameObject);
@@ -86,7 +86,7 @@ public class Water : MonoBehaviour {
 		}
 	}
 
-	AudioSource PlayClipAt(AudioClip clip, Vector3 pos, float volume)
+	AudioSource PlayClipAt(AudioClip clip, Vector3 pos, float volume, int priority)
 	{
 		GameObject tempGO = new GameObject("TempAudio"); 
 		tempGO.transform.position = pos; 
@@ -94,7 +94,7 @@ public class Water : MonoBehaviour {
 
 		aSource.clip = clip; 
 		aSource.volume = volume;
-		aSource.priority = 200;
+		aSource.priority = priority;
 		aSource.spatialBlend = 0;
 
 		aSource.Play(); 
