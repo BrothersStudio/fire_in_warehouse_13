@@ -15,7 +15,6 @@ public class MonsterSpawnerController : MonoBehaviour {
 	public float ySpawn;
 
 	//public AudioClip heartbeat_slow;
-	public AudioClip heartBeatSlow;
 	public AudioClip heartBeatFast;
 	private AudioSource heartbeatAudio;
 
@@ -81,11 +80,6 @@ public class MonsterSpawnerController : MonoBehaviour {
 				heartbeatAudio.clip = heartBeatFast;
 				heartbeatAudio.Play ();
 			} 
-			else 
-			{
-				//heartbeatAudio.clip = heartBeatSlow;
-				//heartbeatAudio.Play ();
-			}
 		}
 	}
 }
