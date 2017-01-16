@@ -19,17 +19,22 @@ public class FireSpawnerController : MonoBehaviour {
 	public float xSpawn;
 	public float ySpawn;
 
+	[HideInInspector]
+	public int activeFires = 0;
+
 	private float cooldownTime;
 
 	void Start ()
 	{
 		cooldownTime = fireCooldown;
 
+		activeFires++;
 		GameObject newFire = Instantiate (firePrefab, new Vector3(6f, 6.6f, 0f), Quaternion.identity);
 
 		newFire.GetComponent<Fire> ().houseHealthbar = houseHealthbar;
 		newFire.GetComponent<Fire> ().startingHitpoints = 100;
 		newFire.GetComponent<Fire> ().score = score;
+		newFire.GetComponent<Fire> ().controller = this;
 
 		newFire.GetComponentInChildren<FireHurtbox>().playerHealthbar = playerHealthbar;
 		newFire.GetComponentInChildren<FireHurtbox>().mainCamera = mainCamera;
@@ -39,21 +44,36 @@ public class FireSpawnerController : MonoBehaviour {
 	{
 		if (Time.timeSinceLevelLoad >= cooldownTime) 
 		{
-			int numFires = 1;
-			if (Time.timeSinceLevelLoad / multiplierTime > 1) 
+			int newFires = 1;
+			if (Time.timeSinceLevelLoad / multiplierTime > 3) 
 			{
-				numFires = 2;
+				if (activeFires == 0) 
+				{
+					newFires = 4;
+				} 
+				else if (activeFires == 1) 
+				{
+					newFires = 3;
+				} 
+				else if (activeFires == 2) 
+				{
+					newFires = 2;
+				} 
+				else 
+				{
+					newFires = 1;
+				}
 			} 
 			else if (Time.timeSinceLevelLoad / multiplierTime > 2) 
 			{
-				numFires = 3;
-			}
-			else if (Time.timeSinceLevelLoad / multiplierTime > 3) 
+				newFires = 3;
+			} 
+			else if (Time.timeSinceLevelLoad / multiplierTime > 1) 
 			{
-				numFires = Random.Range (1, 3);
-			}
+				newFires = 2;
+			} 
 
-			for (int i = 0; i < numFires; i++) 
+			for (int i = 0; i < newFires; i++) 
 			{
 				cooldownTime = Time.timeSinceLevelLoad + fireCooldown;
 
@@ -78,15 +98,16 @@ public class FireSpawnerController : MonoBehaviour {
 				}
 				while (!walkable || (playerDist < 5f));
 
+				activeFires++;
 				GameObject newFire = Instantiate (firePrefab, spawnLocation, Quaternion.identity);
 
 				newFire.GetComponent<Fire> ().houseHealthbar = houseHealthbar;
 				newFire.GetComponent<Fire> ().score = score;
+				newFire.GetComponent<Fire> ().controller = this;
 
 				newFire.GetComponentInChildren<FireHurtbox>().playerHealthbar = playerHealthbar;
 				newFire.GetComponentInChildren<FireHurtbox>().mainCamera = mainCamera;
 			}
 		}
-
 	}
 }

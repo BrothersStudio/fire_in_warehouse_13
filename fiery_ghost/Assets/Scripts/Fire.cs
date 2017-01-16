@@ -7,6 +7,8 @@ public class Fire : MonoBehaviour {
 
 	[HideInInspector]
 	public DamageController houseHealthbar;
+	[HideInInspector]
+	public FireSpawnerController controller;
 
 	private AudioSource fireSource;
 
@@ -116,6 +118,11 @@ public class Fire : MonoBehaviour {
 			yellowLight.intensity = yellowLight.intensity + Random.Range (-0.1f, 0.1f);
 			redLight.intensity = redLight.intensity + Random.Range (-0.1f, 0.2f);
 		}
+	}
+
+	public void ReportDeath ()
+	{
+		controller.activeFires--;
 	}
 
 	void OnGUI() 

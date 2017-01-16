@@ -59,7 +59,8 @@ public class Water : MonoBehaviour {
 			{
 				PlayClipAt(douse, transform.position, 0.35f, 30);
 
-				other.transform.parent.GetComponent<Fire>().score.AddScore (5f);
+				other.transform.parent.GetComponent<Fire> ().score.AddScore (5f);
+				other.transform.parent.GetComponent<Fire> ().ReportDeath ();
 
 				Destroy (other.transform.parent.gameObject);
 			} 
