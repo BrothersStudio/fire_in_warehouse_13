@@ -53,15 +53,15 @@ public class FireSpawnerController : MonoBehaviour {
 				} 
 				else if (activeFires == 1) 
 				{
-					newFires = 4;
+					newFires = 3;
 				} 
 				else if (activeFires == 2) 
 				{
-					newFires = 3;
+					newFires = 2;
 				} 
 				else 
 				{
-					newFires = 2;
+					newFires = 1;
 				}
 			} 
 			else if (Time.timeSinceLevelLoad / multiplierTime > 2) 

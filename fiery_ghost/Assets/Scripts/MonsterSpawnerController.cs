@@ -69,6 +69,7 @@ public class MonsterSpawnerController : MonoBehaviour {
 			newMonster.GetComponent<MonsterController> ().mainCamera = mainCamera;
 
 			newMonster.GetComponent<MonsterController> ().speed = Mathf.Clamp (newMonster.GetComponent<MonsterController> ().speed + monsterNumber * 0.5f, 6f, 7f);
+			newMonster.GetComponent<MonsterController> ().lifetime += monsterNumber * 20;
 			monsterNumber++;
 		}
 
