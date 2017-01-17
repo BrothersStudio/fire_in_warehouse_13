@@ -21,14 +21,26 @@ public class GameOverController : MonoBehaviour {
 	public GameObject gameOverContinue;
 	public GameObject gameOverQuit;
 
+	private bool isGameOver = false;
+	private AudioSource gameOverSource;
+	private Camera mainCam;
+
+	void Start ()
+	{
+		gameOverSource = GetComponent<AudioSource> ();	
+		mainCam = Camera.main;
+	}
+
 	void LateUpdate () 
 	{
 		float houseHealth = houseHealthbar.GetComponent<Image> ().fillAmount;
 		float playerHealth = playerHealthbar.GetComponent<Image> ().fillAmount;
 
-		if (houseHealth <= 0 || playerHealth <= 0) 
+		if ((houseHealth <= 0 || playerHealth <= 0) && !isGameOver) 
 		{
 			// Game over!
+			isGameOver = true;
+
 			Debug.Log("Game lasted: " + Time.timeSinceLevelLoad.ToString());
 
 			string score = scoreText.GetComponent<Text>().text;
@@ -37,7 +49,6 @@ public class GameOverController : MonoBehaviour {
 			player.SetActive (false);
 			mainCamera.GetComponent<AudioListener> ().enabled = true;
 
-			gameObject.SetActive(false);  // This is the game over monitor
 			monsterController.SetActive (false);
 			fireController.SetActive (false);
 
@@ -47,6 +58,13 @@ public class GameOverController : MonoBehaviour {
 			gameOverScore.SetActive (true);
 			gameOverContinue.SetActive (true);
 			gameOverQuit.SetActive (true);
+
+			AudioSource[] cameraSources = mainCam.GetComponentsInChildren<AudioSource> ();
+			for (int i = 0; i < cameraSources.Length; i++) 
+			{
+				cameraSources [i].Stop ();
+			}
+			gameOverSource.Play ();
 		}
 	}
 }

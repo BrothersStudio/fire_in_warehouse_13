@@ -14,10 +14,10 @@ public class MonsterSpawnerController : MonoBehaviour {
 	public float xSpawn;
 	public float ySpawn;
 
-	//public AudioClip heartbeat_slow;
 	public AudioClip heartBeatFast;
 	private AudioSource heartbeatAudio;
 
+	private float monsterNumber = 0f;
 	private float cooldownTime = 0f;
 
 	[HideInInspector]
@@ -67,6 +67,9 @@ public class MonsterSpawnerController : MonoBehaviour {
 			newMonster.GetComponent<MonsterController> ().player = player;
 			newMonster.GetComponent<MonsterController> ().playerHealthbar = playerHealthbar;
 			newMonster.GetComponent<MonsterController> ().mainCamera = mainCamera;
+
+			newMonster.GetComponent<MonsterController> ().speed = Mathf.Clamp (newMonster.GetComponent<MonsterController> ().speed + monsterNumber * 0.5f, 6f, 7f);
+			monsterNumber++;
 		}
 
 		// Choosing heartbeat clip

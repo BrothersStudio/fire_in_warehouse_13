@@ -26,6 +26,7 @@ public class Fire : MonoBehaviour {
 	public Light yellowLight; 
 	public GameObject sprite;
 	public Texture2D icon;
+	private float startingIconSize;
 	public float iconSize;
 
 	[HideInInspector]
@@ -59,6 +60,7 @@ public class Fire : MonoBehaviour {
 		startingSpriteSize = sprite.GetComponent<Transform>().localScale;
 		startingMonsterExclusionRadius = GetComponentsInChildren<CircleCollider2D> () [0].radius;
 		startingHitboxRadius = GetComponentsInChildren<CircleCollider2D> () [1].radius;
+		startingIconSize = iconSize;
 
 		visible = sprite.GetComponent<SpriteRenderer> ().isVisible;
 		cam = Camera.main;
@@ -87,6 +89,8 @@ public class Fire : MonoBehaviour {
 
 			GetComponentsInChildren<CircleCollider2D> () [0].radius = startingMonsterExclusionRadius * (hitpoints / nominalHitpoints);
 			GetComponentsInChildren<CircleCollider2D> () [1].radius = startingHitboxRadius * (hitpoints / nominalHitpoints);
+
+			iconSize = startingIconSize * (hitpoints / nominalHitpoints);
 
 			fireSource.volume = (hitpoints / nominalHitpoints);
 		}
