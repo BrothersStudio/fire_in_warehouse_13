@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class GameOverController : MonoBehaviour {
 
@@ -20,6 +21,8 @@ public class GameOverController : MonoBehaviour {
 	public GameObject gameOverScore;
 	public GameObject gameOverContinue;
 	public GameObject gameOverQuit;
+
+    public AudioMixerSnapshot start;
 
 	private bool isGameOver = false;
 	private AudioSource gameOverSource;
@@ -58,6 +61,7 @@ public class GameOverController : MonoBehaviour {
 			gameOverScore.SetActive (true);
 			gameOverContinue.SetActive (true);
 			gameOverQuit.SetActive (true);
+            start.TransitionTo(0);
 
 			AudioSource[] cameraSources = mainCam.GetComponentsInChildren<AudioSource> ();
 			for (int i = 0; i < cameraSources.Length; i++) 
